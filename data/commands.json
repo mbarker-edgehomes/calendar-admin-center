@@ -1,0 +1,7427 @@
+[
+  {
+    "name": "Add-AvailabilityAddressSpace",
+    "title": "Add availability address space",
+    "category": "Sharing & availability",
+    "unavailable": null,
+    "url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/add-availabilityaddressspace?view=exchange-ps",
+    "parameters": [
+      {
+        "name": "AccessMethod",
+        "type": "AvailabilityAccessMethod",
+        "required": true,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ForestName",
+        "type": "String",
+        "required": true,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Confirm",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Credentials",
+        "type": "PSCredential",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "TargetAutodiscoverEpr",
+        "type": "Uri",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "TargetServiceEpr",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "TargetTenantId",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "WhatIf",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      }
+    ]
+  },
+  {
+    "name": "Add-MailboxFolderPermission",
+    "title": "Grant calendar access",
+    "category": "Folder permissions",
+    "unavailable": null,
+    "url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/add-mailboxfolderpermission?view=exchange-ps",
+    "parameters": [
+      {
+        "name": "Identity",
+        "type": "MailboxFolderIdParameter",
+        "required": true,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "AccessRights",
+        "type": "MailboxFolderAccessRight[]",
+        "required": true,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "User",
+        "type": "MailboxFolderUserIdParameter",
+        "required": true,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Confirm",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "SendNotificationToUser",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "SharingPermissionFlags",
+        "type": "MailboxFolderPermissionFlags",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "WhatIf",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      }
+    ]
+  },
+  {
+    "name": "Get-AvailabilityAddressSpace",
+    "title": "View availability address space",
+    "category": "Sharing & availability",
+    "unavailable": null,
+    "url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/get-availabilityaddressspace?view=exchange-ps",
+    "parameters": [
+      {
+        "name": "Identity",
+        "type": "AvailabilityAddressSpaceIdParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      }
+    ]
+  },
+  {
+    "name": "Get-AvailabilityConfig",
+    "title": "View availability config",
+    "category": "Sharing & availability",
+    "unavailable": null,
+    "url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/get-availabilityconfig?view=exchange-ps",
+    "parameters": [
+      {
+        "name": "Identity",
+        "type": "OrganizationIdParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      }
+    ]
+  },
+  {
+    "name": "Get-CalendarDiagnosticAnalysis",
+    "title": "View calendar diagnostic analysis",
+    "category": "Diagnostics & events",
+    "unavailable": "on-premises",
+    "url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/get-calendardiagnosticanalysis?view=exchange-ps",
+    "parameters": [
+      {
+        "name": "CalendarLogs",
+        "type": "CalendarLog[]",
+        "required": true,
+        "sets": [
+          "DefaultSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "LogLocation",
+        "type": "String[]",
+        "required": true,
+        "sets": [
+          "LocationSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "DetailLevel",
+        "type": "AnalysisDetailLevel",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "GlobalObjectId",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "OutputAs",
+        "type": "OutputType",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      }
+    ]
+  },
+  {
+    "name": "Get-CalendarDiagnosticLog",
+    "title": "View calendar diagnostic log",
+    "category": "Diagnostics & events",
+    "unavailable": "on-premises",
+    "url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/get-calendardiagnosticlog?view=exchange-ps",
+    "parameters": [
+      {
+        "name": "Identity",
+        "type": "MailboxIdParameter",
+        "required": true,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "LogLocation",
+        "type": "String",
+        "required": true,
+        "sets": [
+          "ExportToMsg",
+          "MeetingId",
+          "MeetingSubject"
+        ],
+        "values": []
+      },
+      {
+        "name": "MeetingID",
+        "type": "String",
+        "required": true,
+        "sets": [
+          "MeetingId",
+          "ExportToMsg"
+        ],
+        "values": []
+      },
+      {
+        "name": "Subject",
+        "type": "String",
+        "required": true,
+        "sets": [
+          "MeetingSubject",
+          "ExportToMsg"
+        ],
+        "values": []
+      },
+      {
+        "name": "Credential",
+        "type": "PSCredential",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "DomainController",
+        "type": "Fqdn",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "EndDate",
+        "type": "ExDateTime",
+        "required": false,
+        "sets": [
+          "ExportToMsg"
+        ],
+        "values": []
+      },
+      {
+        "name": "EntryId",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "ExportToMsg"
+        ],
+        "values": []
+      },
+      {
+        "name": "ExactMatch",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ExportToMsg"
+        ],
+        "values": []
+      },
+      {
+        "name": "ItemClass",
+        "type": "String[]",
+        "required": false,
+        "sets": [
+          "ExportToMsg"
+        ],
+        "values": []
+      },
+      {
+        "name": "ItemIds",
+        "type": "String[]",
+        "required": false,
+        "sets": [
+          "ExportToMsg"
+        ],
+        "values": []
+      },
+      {
+        "name": "Latest",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "ExportToMsg"
+        ],
+        "values": []
+      },
+      {
+        "name": "ReadFromDomainController",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ResultSize",
+        "type": "Unlimited",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "StartDate",
+        "type": "ExDateTime",
+        "required": false,
+        "sets": [
+          "ExportToMsg"
+        ],
+        "values": []
+      }
+    ]
+  },
+  {
+    "name": "Get-CalendarDiagnosticObjects",
+    "title": "Inspect calendar diagnostic events",
+    "category": "Diagnostics & events",
+    "unavailable": null,
+    "url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/get-calendardiagnosticobjects?view=exchange-ps",
+    "parameters": [
+      {
+        "name": "Identity",
+        "type": "UnifiedGroupOrUserMailboxIdParameter",
+        "required": true,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "AnalyzeExceptionWithOriginalStartDate",
+        "type": "ExDateTime",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "AutoRequeryOnMeetingId",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ConfigurationName",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "CustomPropertyNames",
+        "type": "String[]",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "EndDate",
+        "type": "ExDateTime",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "EntryId",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "EwsId",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ExactMatch",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ItemClass",
+        "type": "String[]",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ItemIds",
+        "type": "String[]",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "MaxResults",
+        "type": "Int32",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "MeetingId",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ODataId",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ResultSize",
+        "type": "Unlimited",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ShouldBindToItem",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ShouldDecodeEnums",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ShouldFetchAttendeeCollection",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ShouldFetchRecurrenceExceptions",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ShouldResolveParticipants",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "StartDate",
+        "type": "ExDateTime",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Subject",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      }
+    ]
+  },
+  {
+    "name": "Get-CalendarNotification",
+    "title": "View calendar notification",
+    "category": "Calendar appearance",
+    "unavailable": "discontinued",
+    "url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/get-calendarnotification?view=exchange-ps",
+    "parameters": [
+      {
+        "name": "Identity",
+        "type": "MailboxIdParameter",
+        "required": true,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Credential",
+        "type": "PSCredential",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "DomainController",
+        "type": "Fqdn",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ReadFromDomainController",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ResultSize",
+        "type": "Unlimited",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      }
+    ]
+  },
+  {
+    "name": "Get-CalendarProcessing",
+    "title": "View resource booking rules",
+    "category": "Booking & resources",
+    "unavailable": null,
+    "url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/get-calendarprocessing?view=exchange-ps",
+    "parameters": [
+      {
+        "name": "Identity",
+        "type": "MailboxIdParameter",
+        "required": true,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ResultSize",
+        "type": "Unlimited",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      }
+    ]
+  },
+  {
+    "name": "Get-EXOMailbox",
+    "title": "Browse mailboxes",
+    "category": "Directory & folders",
+    "unavailable": null,
+    "url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/get-exomailbox?view=exchange-ps",
+    "parameters": [
+      {
+        "name": "Identity",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "Identity"
+        ],
+        "values": []
+      },
+      {
+        "name": "Anr",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "Anr"
+        ],
+        "values": []
+      },
+      {
+        "name": "Archive",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Async",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ExternalDirectoryObjectId",
+        "type": "Guid",
+        "required": false,
+        "sets": [
+          "Identity"
+        ],
+        "values": []
+      },
+      {
+        "name": "Filter",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "GroupMailbox",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "InactiveMailboxOnly",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "IncludeInactiveMailbox",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "MailboxPlan",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Migration",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "OrganizationalUnit",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "PrimarySmtpAddress",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "Identity"
+        ],
+        "values": []
+      },
+      {
+        "name": "Properties",
+        "type": "String[]",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "PropertySets",
+        "type": "PropertySet[]",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "PublicFolder",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "RecipientTypeDetails",
+        "type": "String[]",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ResultSize",
+        "type": "Unlimited",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "SoftDeletedMailbox",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "UserPrincipalName",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "Identity"
+        ],
+        "values": []
+      }
+    ]
+  },
+  {
+    "name": "Get-EXOMailboxFolderPermission",
+    "title": "View calendar permissions (EXO)",
+    "category": "Folder permissions",
+    "unavailable": null,
+    "url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/get-exomailboxfolderpermission?view=exchange-ps",
+    "parameters": [
+      {
+        "name": "Identity",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ExternalDirectoryObjectId",
+        "type": "Guid",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "GroupMailbox",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "PrimarySmtpAddress",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "User",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "UserPrincipalName",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      }
+    ]
+  },
+  {
+    "name": "Get-EXOMailboxFolderStatistics",
+    "title": "Discover calendar folders",
+    "category": "Directory & folders",
+    "unavailable": null,
+    "url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/get-exomailboxfolderstatistics?view=exchange-ps",
+    "parameters": [
+      {
+        "name": "Archive",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "DiagnosticInfo",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ExternalDirectoryObjectId",
+        "type": "Guid",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Folderscope",
+        "type": "ElcFolderType",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Identity",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "IncludeOldestAndNewestItems",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "IncludeSoftDeletedRecipients",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "PrimarySmtpAddress",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "UserPrincipalName",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      }
+    ]
+  },
+  {
+    "name": "Get-EventsFromEmailConfiguration",
+    "title": "View events from email settings",
+    "category": "Calendar appearance",
+    "unavailable": null,
+    "url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/get-eventsfromemailconfiguration?view=exchange-ps",
+    "parameters": [
+      {
+        "name": "Identity",
+        "type": "RecipientIdParameter",
+        "required": true,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      }
+    ]
+  },
+  {
+    "name": "Get-Mailbox",
+    "title": "View mailbox properties",
+    "category": "Directory & folders",
+    "unavailable": null,
+    "url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/get-mailbox?view=exchange-ps",
+    "parameters": [
+      {
+        "name": "Identity",
+        "type": "MailboxIdParameter",
+        "required": false,
+        "sets": [
+          "Identity"
+        ],
+        "values": []
+      },
+      {
+        "name": "Anr",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "AnrSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "Archive",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Filter",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "GroupMailbox",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "InactiveMailboxOnly",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "AnrSet",
+          "Identity",
+          "MailboxPlanSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "IncludeAcceptMessagesOnlyFromDLMembersWithDisplayNames",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "Identity",
+          "AnrSet",
+          "MailboxPlanSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "IncludeAcceptMessagesOnlyFromSendersOrMembersWithDisplayNames",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "Identity",
+          "AnrSet",
+          "MailboxPlanSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "IncludeAcceptMessagesOnlyFromWithDisplayNames",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "Identity",
+          "AnrSet",
+          "MailboxPlanSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "IncludeEmailAddressDisplayNames",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "Identity",
+          "AnrSet",
+          "MailboxPlanSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "IncludeForwardingAddressWithDisplayNames",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "Identity",
+          "AnrSet",
+          "MailboxPlanSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "IncludeGrantSendOnBehalfToWithDisplayNames",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "Identity",
+          "AnrSet",
+          "MailboxPlanSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "IncludeInactiveMailbox",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "AnrSet",
+          "Identity",
+          "MailboxPlanSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "MailboxPlan",
+        "type": "MailboxPlanIdParameter",
+        "required": false,
+        "sets": [
+          "MailboxPlanSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "Migration",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "OrganizationalUnit",
+        "type": "OrganizationalUnitIdParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "PublicFolder",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "RecipientTypeDetails",
+        "type": "RecipientTypeDetails[]",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ResultSize",
+        "type": "Unlimited",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "SoftDeletedMailbox",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "AnrSet",
+          "Identity",
+          "MailboxPlanSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "SortBy",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      }
+    ]
+  },
+  {
+    "name": "Get-MailboxCalendarConfiguration",
+    "title": "View calendar appearance & work hours",
+    "category": "Calendar appearance",
+    "unavailable": null,
+    "url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/get-mailboxcalendarconfiguration?view=exchange-ps",
+    "parameters": [
+      {
+        "name": "Identity",
+        "type": "MailboxIdParameter",
+        "required": true,
+        "sets": [
+          "Default",
+          "Identity"
+        ],
+        "values": []
+      },
+      {
+        "name": "MailboxLocation",
+        "type": "MailboxLocationIdParameter",
+        "required": false,
+        "sets": [
+          "MailboxLocation"
+        ],
+        "values": []
+      }
+    ]
+  },
+  {
+    "name": "Get-MailboxCalendarFolder",
+    "title": "View calendar publishing settings",
+    "category": "Calendar publishing",
+    "unavailable": null,
+    "url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/get-mailboxcalendarfolder?view=exchange-ps",
+    "parameters": [
+      {
+        "name": "Identity",
+        "type": "MailboxFolderIdParameter",
+        "required": true,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "UseCustomRouting",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      }
+    ]
+  },
+  {
+    "name": "Get-MailboxFolder",
+    "title": "View mailbox folder",
+    "category": "Directory & folders",
+    "unavailable": null,
+    "url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/get-mailboxfolder?view=exchange-ps",
+    "parameters": [
+      {
+        "name": "Identity",
+        "type": "MailboxFolderIdParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "GetChildren",
+        "type": "SwitchParameter",
+        "required": true,
+        "sets": [
+          "GetChildren"
+        ],
+        "values": []
+      },
+      {
+        "name": "Recurse",
+        "type": "SwitchParameter",
+        "required": true,
+        "sets": [
+          "Recurse"
+        ],
+        "values": []
+      },
+      {
+        "name": "MailFolderOnly",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ResultSize",
+        "type": "Unlimited",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      }
+    ]
+  },
+  {
+    "name": "Get-MailboxFolderPermission",
+    "title": "View calendar permissions",
+    "category": "Folder permissions",
+    "unavailable": null,
+    "url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/get-mailboxfolderpermission?view=exchange-ps",
+    "parameters": [
+      {
+        "name": "Identity",
+        "type": "MailboxFolderIdParameter",
+        "required": true,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "GroupMailbox",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ResultSize",
+        "type": "Unlimited",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "SkipCount",
+        "type": "Int32",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "UseCustomRouting",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "User",
+        "type": "MailboxFolderUserIdParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      }
+    ]
+  },
+  {
+    "name": "Get-MailboxFolderStatistics",
+    "title": "View folder statistics",
+    "category": "Directory & folders",
+    "unavailable": null,
+    "url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/get-mailboxfolderstatistics?view=exchange-ps",
+    "parameters": [
+      {
+        "name": "Identity",
+        "type": "GeneralMailboxOrMailUserIdParameter",
+        "required": true,
+        "sets": [
+          "Identity",
+          "AuditLog"
+        ],
+        "values": []
+      },
+      {
+        "name": "Database",
+        "type": "DatabaseIdParameter",
+        "required": true,
+        "sets": [
+          "Database"
+        ],
+        "values": []
+      },
+      {
+        "name": "StoreMailboxIdentity",
+        "type": "StoreMailboxIdParameter",
+        "required": true,
+        "sets": [
+          "Database"
+        ],
+        "values": []
+      },
+      {
+        "name": "Archive",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "Identity"
+        ],
+        "values": []
+      },
+      {
+        "name": "DiagnosticInfo",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "FolderScope",
+        "type": "ElcFolderType",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "IncludeAnalysis",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "IncludeOldestAndNewestItems",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "IncludeSoftDeletedRecipients",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ResultSize",
+        "type": "Unlimited",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "SkipCount",
+        "type": "Int32",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "UseCustomRouting",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      }
+    ]
+  },
+  {
+    "name": "Get-MailboxRegionalConfiguration",
+    "title": "View time zone & regional settings",
+    "category": "Calendar appearance",
+    "unavailable": null,
+    "url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/get-mailboxregionalconfiguration?view=exchange-ps",
+    "parameters": [
+      {
+        "name": "Identity",
+        "type": "MailboxIdParameter",
+        "required": true,
+        "sets": [
+          "Default",
+          "Identity"
+        ],
+        "values": []
+      },
+      {
+        "name": "Archive",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "MailboxLocation",
+        "type": "MailboxLocationIdParameter",
+        "required": false,
+        "sets": [
+          "MailboxLocation"
+        ],
+        "values": []
+      },
+      {
+        "name": "UseCustomRouting",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "Identity",
+          "MailboxLocation"
+        ],
+        "values": []
+      },
+      {
+        "name": "VerifyDefaultFolderNameLanguage",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      }
+    ]
+  },
+  {
+    "name": "Get-OrganizationConfig",
+    "title": "View organization config",
+    "category": "Sharing & availability",
+    "unavailable": null,
+    "url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/get-organizationconfig?view=exchange-ps",
+    "parameters": []
+  },
+  {
+    "name": "Get-OrganizationRelationship",
+    "title": "View organization relationship",
+    "category": "Sharing & availability",
+    "unavailable": null,
+    "url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/get-organizationrelationship?view=exchange-ps",
+    "parameters": [
+      {
+        "name": "Identity",
+        "type": "OrganizationRelationshipIdParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      }
+    ]
+  },
+  {
+    "name": "Get-Place",
+    "title": "View place",
+    "category": "Booking & resources",
+    "unavailable": null,
+    "url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/get-place?view=exchange-ps",
+    "parameters": [
+      {
+        "name": "Identity",
+        "type": "RecipientIdParameter",
+        "required": false,
+        "sets": [
+          "Identity"
+        ],
+        "values": []
+      },
+      {
+        "name": "Confirm",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ResultSize",
+        "type": "Unlimited",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Type",
+        "type": "GetPlaceType",
+        "required": false,
+        "sets": [
+          "AllPlaces"
+        ],
+        "values": []
+      },
+      {
+        "name": "WhatIf",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      }
+    ]
+  },
+  {
+    "name": "Get-ResourceConfig",
+    "title": "View resource config",
+    "category": "Booking & resources",
+    "unavailable": null,
+    "url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/get-resourceconfig?view=exchange-ps",
+    "parameters": []
+  },
+  {
+    "name": "Get-SharingPolicy",
+    "title": "View sharing policy",
+    "category": "Sharing & availability",
+    "unavailable": null,
+    "url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/get-sharingpolicy?view=exchange-ps",
+    "parameters": [
+      {
+        "name": "Identity",
+        "type": "SharingPolicyIdParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      }
+    ]
+  },
+  {
+    "name": "Invoke-CalendarEventMigration",
+    "title": "Migrate event time zones",
+    "category": "Diagnostics & events",
+    "unavailable": null,
+    "url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/invoke-calendareventmigration?view=exchange-ps",
+    "parameters": [
+      {
+        "name": "Identity",
+        "type": "MailboxIdParameter",
+        "required": true,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "FromWindowsTimeZoneId",
+        "type": "System.String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ToWindowsTimeZoneId",
+        "type": "System.String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "QueryStartDate",
+        "type": "DateTime",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "QueryWindowInDays",
+        "type": "System.Int32",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Force",
+        "type": "System.Management.Automation.SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Confirm",
+        "type": "System.Management.Automation.SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "WhatIf",
+        "type": "System.Management.Automation.SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "PreviewOnly",
+        "type": "System.Management.Automation.SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      }
+    ]
+  },
+  {
+    "name": "New-AvailabilityConfig",
+    "title": "Create availability config",
+    "category": "Sharing & availability",
+    "unavailable": null,
+    "url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/new-availabilityconfig?view=exchange-ps",
+    "parameters": [
+      {
+        "name": "AllowedTenantIds",
+        "type": "MultiValuedProperty",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Confirm",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "OrgWideAccount",
+        "type": "SecurityPrincipalIdParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "WhatIf",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      }
+    ]
+  },
+  {
+    "name": "New-MailboxFolder",
+    "title": "Create mailbox folder",
+    "category": "Directory & folders",
+    "unavailable": null,
+    "url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/new-mailboxfolder?view=exchange-ps",
+    "parameters": [
+      {
+        "name": "Name",
+        "type": "String",
+        "required": true,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Parent",
+        "type": "MailboxFolderIdParameter",
+        "required": true,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Confirm",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "DomainController",
+        "type": "Fqdn",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "WhatIf",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      }
+    ]
+  },
+  {
+    "name": "New-OrganizationRelationship",
+    "title": "Create organization relationship",
+    "category": "Sharing & availability",
+    "unavailable": null,
+    "url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/new-organizationrelationship?view=exchange-ps",
+    "parameters": [
+      {
+        "name": "Name",
+        "type": "String",
+        "required": true,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "DomainNames",
+        "type": "MultiValuedProperty",
+        "required": true,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ArchiveAccessEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Confirm",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "DeliveryReportEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Enabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "FreeBusyAccessEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "FreeBusyAccessLevel",
+        "type": "FreeBusyAccessLevel",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "FreeBusyAccessScope",
+        "type": "GroupIdParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "MailboxMoveCapability",
+        "type": "MailboxMoveCapability",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "MailboxMoveEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "MailboxMovePublishedScopes",
+        "type": "MultiValuedProperty",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "MailTipsAccessEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "MailTipsAccessLevel",
+        "type": "MailTipsAccessLevel",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "MailTipsAccessScope",
+        "type": "GroupIdParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "OAuthApplicationId",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "OrganizationContact",
+        "type": "SmtpAddress",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "PhotosEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "TargetApplicationUri",
+        "type": "Uri",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "TargetAutodiscoverEpr",
+        "type": "Uri",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "TargetOwaURL",
+        "type": "Uri",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "TargetSharingEpr",
+        "type": "Uri",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "WhatIf",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      }
+    ]
+  },
+  {
+    "name": "New-SharingPolicy",
+    "title": "Create sharing policy",
+    "category": "Sharing & availability",
+    "unavailable": null,
+    "url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/new-sharingpolicy?view=exchange-ps",
+    "parameters": [
+      {
+        "name": "Name",
+        "type": "String",
+        "required": true,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Domains",
+        "type": "MultiValuedProperty",
+        "required": true,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Confirm",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Default",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Enabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "WhatIf",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      }
+    ]
+  },
+  {
+    "name": "Remove-AvailabilityAddressSpace",
+    "title": "Remove availability address space",
+    "category": "Sharing & availability",
+    "unavailable": null,
+    "url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/remove-availabilityaddressspace?view=exchange-ps",
+    "parameters": [
+      {
+        "name": "Identity",
+        "type": "AvailabilityAddressSpaceIdParameter",
+        "required": true,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Confirm",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "WhatIf",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      }
+    ]
+  },
+  {
+    "name": "Remove-AvailabilityConfig",
+    "title": "Remove availability config",
+    "category": "Sharing & availability",
+    "unavailable": null,
+    "url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/remove-availabilityconfig?view=exchange-ps",
+    "parameters": [
+      {
+        "name": "Identity",
+        "type": "AvailabilityConfigIdParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Confirm",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "WhatIf",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      }
+    ]
+  },
+  {
+    "name": "Remove-CalendarEvents",
+    "title": "Cancel organized meetings",
+    "category": "Diagnostics & events",
+    "unavailable": null,
+    "url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/remove-calendarevents?view=exchange-ps",
+    "parameters": [
+      {
+        "name": "Identity",
+        "type": "MailboxIdParameter",
+        "required": true,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "QueryWindowInDays",
+        "type": "Int32",
+        "required": true,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "CancelOrganizedMeetings",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Confirm",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "PreviewOnly",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "QueryStartDate",
+        "type": "ExDateTime",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "UseCustomRouting",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "WhatIf",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      }
+    ]
+  },
+  {
+    "name": "Remove-MailboxFolderPermission",
+    "title": "Remove calendar access",
+    "category": "Folder permissions",
+    "unavailable": null,
+    "url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/remove-mailboxfolderpermission?view=exchange-ps",
+    "parameters": [
+      {
+        "name": "Identity",
+        "type": "MailboxFolderIdParameter",
+        "required": true,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "User",
+        "type": "MailboxFolderUserIdParameter",
+        "required": true,
+        "sets": [
+          "Default",
+          "Identity"
+        ],
+        "values": []
+      },
+      {
+        "name": "Confirm",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Force",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "Identity",
+          "ResetDelegateUserCollection"
+        ],
+        "values": []
+      },
+      {
+        "name": "ResetDelegateUserCollection",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "ResetDelegateUserCollection"
+        ],
+        "values": []
+      },
+      {
+        "name": "SendNotificationToUser",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "Identity",
+          "ResetDelegateUserCollection"
+        ],
+        "values": []
+      },
+      {
+        "name": "WhatIf",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      }
+    ]
+  },
+  {
+    "name": "Remove-OrganizationRelationship",
+    "title": "Remove organization relationship",
+    "category": "Sharing & availability",
+    "unavailable": null,
+    "url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/remove-organizationrelationship?view=exchange-ps",
+    "parameters": [
+      {
+        "name": "Identity",
+        "type": "OrganizationRelationshipIdParameter",
+        "required": true,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Confirm",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "WhatIf",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      }
+    ]
+  },
+  {
+    "name": "Remove-SharingPolicy",
+    "title": "Remove sharing policy",
+    "category": "Sharing & availability",
+    "unavailable": null,
+    "url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/remove-sharingpolicy?view=exchange-ps",
+    "parameters": [
+      {
+        "name": "Identity",
+        "type": "SharingPolicyIdParameter",
+        "required": true,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Confirm",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "WhatIf",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      }
+    ]
+  },
+  {
+    "name": "Set-AvailabilityConfig",
+    "title": "Edit availability config",
+    "category": "Sharing & availability",
+    "unavailable": null,
+    "url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/set-availabilityconfig?view=exchange-ps",
+    "parameters": [
+      {
+        "name": "AllowedTenantIds",
+        "type": "MultiValuedProperty",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Confirm",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "OrgWideAccount",
+        "type": "SecurityPrincipalIdParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "WhatIf",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      }
+    ]
+  },
+  {
+    "name": "Set-CalendarNotification",
+    "title": "Edit calendar notification",
+    "category": "Calendar appearance",
+    "unavailable": "discontinued",
+    "url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/set-calendarnotification?view=exchange-ps",
+    "parameters": [
+      {
+        "name": "Identity",
+        "type": "MailboxIdParameter",
+        "required": true,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "CalendarUpdateNotification",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "CalendarUpdateSendDuringWorkHour",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Confirm",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "DailyAgendaNotification",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "DailyAgendaNotificationSendTime",
+        "type": "TimeSpan",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "DomainController",
+        "type": "Fqdn",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "IgnoreDefaultScope",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "MeetingReminderNotification",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "MeetingReminderSendDuringWorkHour",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "NextDays",
+        "type": "Int32",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "WhatIf",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      }
+    ]
+  },
+  {
+    "name": "Set-CalendarProcessing",
+    "title": "Edit resource booking & delegates",
+    "category": "Booking & resources",
+    "unavailable": null,
+    "url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/set-calendarprocessing?view=exchange-ps",
+    "parameters": [
+      {
+        "name": "Identity",
+        "type": "MailboxIdParameter",
+        "required": true,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "AddAdditionalResponse",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "AdditionalResponse",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "AddNewRequestsTentatively",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "AddOrganizerToSubject",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "AllBookInPolicy",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "AllowConflicts",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "AllowRecurringMeetings",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "AllRequestInPolicy",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "AllRequestOutOfPolicy",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "AutomateProcessing",
+        "type": "CalendarProcessingFlags",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "BookingType",
+        "type": "<ResourceBookingType>",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "BookingWindowInDays",
+        "type": "Int32",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "BookInPolicy",
+        "type": "RecipientIdParameter[]",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Confirm",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ConflictPercentageAllowed",
+        "type": "Int32",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "DeleteAttachments",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "DeleteComments",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "DeleteNonCalendarItems",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "DeleteSubject",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "EnableAutoRelease",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "EnableResponseDetails",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "EnforceCapacity",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "EnforceSchedulingHorizon",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ForwardRequestsToDelegates",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "IgnoreDefaultScope",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "MaximumConflictInstances",
+        "type": "Int32",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "MaximumDurationInMinutes",
+        "type": "Int32",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "MinimumDurationInMinutes",
+        "type": "Int32",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "OrganizerInfo",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "PostReservationMaxClaimTimeInMinutes",
+        "type": "Int32",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ProcessExternalMeetingMessages",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "RemoveCanceledMeetings",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "RemoveForwardedMeetingNotifications",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "RemoveOldMeetingMessages",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "RemovePrivateProperty",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "RequestInPolicy",
+        "type": "RecipientIdParameter[]",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "RequestOutOfPolicy",
+        "type": "RecipientIdParameter[]",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ResourceDelegates",
+        "type": "RecipientIdParameter[]",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ScheduleOnlyDuringWorkHours",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "TentativePendingApproval",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "WhatIf",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      }
+    ]
+  },
+  {
+    "name": "Set-EventsFromEmailConfiguration",
+    "title": "Edit events from email settings",
+    "category": "Calendar appearance",
+    "unavailable": null,
+    "url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/set-eventsfromemailconfiguration?view=exchange-ps",
+    "parameters": [
+      {
+        "name": "Identity",
+        "type": "RecipientIdParameter",
+        "required": true,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "CreateEventsFromEmailAsPrivate",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "Identity"
+        ],
+        "values": []
+      },
+      {
+        "name": "EventReservationProcessingLevel",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "Identity"
+        ],
+        "values": []
+      },
+      {
+        "name": "FlightReservationProcessingLevel",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "Identity"
+        ],
+        "values": []
+      },
+      {
+        "name": "FoodEstablishmentReservationProcessingLevel",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "Identity"
+        ],
+        "values": []
+      },
+      {
+        "name": "InvoiceProcessingLevel",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "Identity"
+        ],
+        "values": []
+      },
+      {
+        "name": "LodgingReservationProcessingLevel",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "Identity"
+        ],
+        "values": []
+      },
+      {
+        "name": "ParcelDeliveryProcessingLevel",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "Identity"
+        ],
+        "values": []
+      },
+      {
+        "name": "RentalCarReservationProcessingLevel",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "Identity"
+        ],
+        "values": []
+      },
+      {
+        "name": "ResetSettings",
+        "type": "SwitchParameter",
+        "required": true,
+        "sets": [
+          "ResetSettings"
+        ],
+        "values": []
+      },
+      {
+        "name": "ServiceReservationProcessingLevel",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "Identity"
+        ],
+        "values": []
+      }
+    ]
+  },
+  {
+    "name": "Set-Mailbox",
+    "title": "Edit mailbox settings & sharing policy",
+    "category": "Directory & folders",
+    "unavailable": null,
+    "url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/set-mailbox?view=exchange-ps",
+    "parameters": [
+      {
+        "name": "Identity",
+        "type": "MailboxIdParameter",
+        "required": true,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "AcceptMessagesOnlyFrom",
+        "type": "MultiValuedProperty",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "AcceptMessagesOnlyFromDLMembers",
+        "type": "MultiValuedProperty",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "AcceptMessagesOnlyFromSendersOrMembers",
+        "type": "MultiValuedProperty",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "AccountDisabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "AddressBookPolicy",
+        "type": "AddressBookMailboxPolicyIdParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Alias",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ApplyMandatoryProperties",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ArchiveName",
+        "type": "MultiValuedProperty",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "AuditAdmin",
+        "type": "MultiValuedProperty",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "AuditDelegate",
+        "type": "MultiValuedProperty",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "AuditEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "AuditLogAgeLimit",
+        "type": "EnhancedTimeSpan",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "AuditOwner",
+        "type": "MultiValuedProperty",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "AutoArchivingEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "Identity",
+          "ExcludeFromAllHolds",
+          "ExcludeFromAllOrgHolds",
+          "ExcludeFromOrgHolds",
+          "IsExchangeCloudManaged",
+          "ProvideConsent",
+          "RecalculateInactiveMailbox",
+          "RemoveComplianceTagHoldApplied",
+          "RemoveDelayHoldApplied",
+          "RemoveDelayReleaseHoldApplied",
+          "RemoveDisabledArchive",
+          "RemoveOrphanedHolds"
+        ],
+        "values": []
+      },
+      {
+        "name": "BypassModerationFromSendersOrMembers",
+        "type": "MultiValuedProperty",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "CalendarRepairDisabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "CalendarVersionStoreDisabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ClearThrottlingPolicyAssignment",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "ExcludeFromAllHolds",
+          "ExcludeFromAllOrgHolds",
+          "ExcludeFromOrgHolds",
+          "IsExchangeCloudManaged",
+          "RecalculateInactiveMailbox",
+          "RemoveDelayHoldApplied",
+          "RemoveDelayReleaseHoldApplied",
+          "RemoveDisabledArchive",
+          "RemoveOrphanedHolds"
+        ],
+        "values": []
+      },
+      {
+        "name": "Confirm",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "CustomAttribute1",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "CustomAttribute10",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "CustomAttribute11",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "CustomAttribute12",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "CustomAttribute13",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "CustomAttribute14",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "CustomAttribute15",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "CustomAttribute2",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "CustomAttribute3",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "CustomAttribute4",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "CustomAttribute5",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "CustomAttribute6",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "CustomAttribute7",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "CustomAttribute8",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "CustomAttribute9",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "DataEncryptionPolicy",
+        "type": "DataEncryptionPolicyIdParameter",
+        "required": false,
+        "sets": [
+          "ExcludeFromAllHolds",
+          "ExcludeFromAllOrgHolds",
+          "ExcludeFromOrgHolds",
+          "IsExchangeCloudManaged",
+          "RecalculateInactiveMailbox",
+          "RemoveDelayHoldApplied",
+          "RemoveDelayReleaseHoldApplied",
+          "RemoveDisabledArchive",
+          "RemoveOrphanedHolds"
+        ],
+        "values": []
+      },
+      {
+        "name": "DefaultAuditSet",
+        "type": "MultiValuedProperty",
+        "required": false,
+        "sets": [
+          "ExcludeFromAllHolds",
+          "ExcludeFromAllOrgHolds",
+          "ExcludeFromOrgHolds",
+          "IsExchangeCloudManaged",
+          "RecalculateInactiveMailbox",
+          "RemoveDelayHoldApplied",
+          "RemoveDelayReleaseHoldApplied",
+          "RemoveDisabledArchive",
+          "RemoveOrphanedHolds"
+        ],
+        "values": []
+      },
+      {
+        "name": "DefaultPublicFolderMailbox",
+        "type": "RecipientIdParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "DeliverToMailboxAndForward",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "DisplayName",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ElcProcessingDisabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ExcludeFromAllHolds",
+          "ExcludeFromAllOrgHolds",
+          "ExcludeFromOrgHolds",
+          "IsExchangeCloudManaged",
+          "RecalculateInactiveMailbox",
+          "RemoveDelayHoldApplied",
+          "RemoveDelayReleaseHoldApplied",
+          "RemoveDisabledArchive",
+          "RemoveOrphanedHolds"
+        ],
+        "values": []
+      },
+      {
+        "name": "EmailAddressDisplayNames",
+        "type": "MultiValuedProperty",
+        "required": false,
+        "sets": [
+          "ExcludeFromAllHolds",
+          "ExcludeFromAllOrgHolds",
+          "ExcludeFromOrgHolds",
+          "IsExchangeCloudManaged",
+          "RecalculateInactiveMailbox",
+          "RemoveDelayHoldApplied",
+          "RemoveDelayReleaseHoldApplied",
+          "RemoveDisabledArchive",
+          "RemoveOrphanedHolds"
+        ],
+        "values": []
+      },
+      {
+        "name": "EmailAddresses",
+        "type": "ProxyAddressCollection",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "EnableRoomMailboxAccount",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "EndDateForRetentionHold",
+        "type": "DateTime",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "EnforcedTimestamps",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "ExcludeFromAllOrgHolds",
+          "ExcludeFromOrgHolds",
+          "IsExchangeCloudManaged",
+          "RecalculateInactiveMailbox",
+          "RemoveDelayHoldApplied",
+          "RemoveDelayReleaseHoldApplied",
+          "RemoveDisabledArchive",
+          "RemoveOrphanedHolds"
+        ],
+        "values": []
+      },
+      {
+        "name": "ExcludeFromAllHolds",
+        "type": "SwitchParameter",
+        "required": true,
+        "sets": [
+          "ExcludeFromAllHolds"
+        ],
+        "values": []
+      },
+      {
+        "name": "ExcludeFromAllOrgHolds",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "ExcludeFromAllOrgHolds"
+        ],
+        "values": []
+      },
+      {
+        "name": "ExcludeFromOrgHolds",
+        "type": "String[]",
+        "required": false,
+        "sets": [
+          "ExcludeFromOrgHolds"
+        ],
+        "values": []
+      },
+      {
+        "name": "ExtensionCustomAttribute1",
+        "type": "MultiValuedProperty",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ExtensionCustomAttribute2",
+        "type": "MultiValuedProperty",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ExtensionCustomAttribute3",
+        "type": "MultiValuedProperty",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ExtensionCustomAttribute4",
+        "type": "MultiValuedProperty",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ExtensionCustomAttribute5",
+        "type": "MultiValuedProperty",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ExternalOofOptions",
+        "type": "ExternalOofOptions",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Force",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ForwardingAddress",
+        "type": "RecipientIdParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ForwardingSmtpAddress",
+        "type": "ProxyAddress",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "GrantSendOnBehalfTo",
+        "type": "MultiValuedProperty",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "GroupMailbox",
+        "type": "MailboxIdParameter",
+        "required": false,
+        "sets": [
+          "ExcludeFromAllHolds",
+          "ExcludeFromAllOrgHolds",
+          "ExcludeFromOrgHolds",
+          "IsExchangeCloudManaged",
+          "RecalculateInactiveMailbox",
+          "RemoveDelayHoldApplied",
+          "RemoveDelayReleaseHoldApplied",
+          "RemoveDisabledArchive",
+          "RemoveOrphanedHolds"
+        ],
+        "values": []
+      },
+      {
+        "name": "HiddenFromAddressListsEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ImmutableId",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "InactiveMailbox",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "ExcludeFromAllHolds",
+          "ExcludeFromAllOrgHolds",
+          "ExcludeFromOrgHolds",
+          "IsExchangeCloudManaged",
+          "RecalculateInactiveMailbox",
+          "RemoveDelayHoldApplied",
+          "RemoveDelayReleaseHoldApplied",
+          "RemoveDisabledArchive",
+          "RemoveOrphanedHolds"
+        ],
+        "values": []
+      },
+      {
+        "name": "IsExchangeCloudManaged",
+        "type": "Boolean",
+        "required": true,
+        "sets": [
+          "IsExchangeCloudManaged"
+        ],
+        "values": []
+      },
+      {
+        "name": "IsExcludedFromServingHierarchy",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "IssueWarningQuota",
+        "type": "Unlimited",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "JournalArchiveAddress",
+        "type": "SmtpAddress",
+        "required": false,
+        "sets": [
+          "ExcludeFromAllHolds",
+          "ExcludeFromAllOrgHolds",
+          "ExcludeFromOrgHolds",
+          "IsExchangeCloudManaged",
+          "RecalculateInactiveMailbox",
+          "RemoveDelayHoldApplied",
+          "RemoveDelayReleaseHoldApplied",
+          "RemoveDisabledArchive",
+          "RemoveOrphanedHolds"
+        ],
+        "values": []
+      },
+      {
+        "name": "Languages",
+        "type": "MultiValuedProperty",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "LitigationHoldDate",
+        "type": "DateTime",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "LitigationHoldDuration",
+        "type": "Unlimited",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "LitigationHoldEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "LitigationHoldOwner",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "MailboxRegion",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "ExcludeFromAllHolds",
+          "ExcludeFromAllOrgHolds",
+          "ExcludeFromOrgHolds",
+          "IsExchangeCloudManaged",
+          "RecalculateInactiveMailbox",
+          "RemoveDelayHoldApplied",
+          "RemoveDelayReleaseHoldApplied",
+          "RemoveDisabledArchive",
+          "RemoveOrphanedHolds"
+        ],
+        "values": []
+      },
+      {
+        "name": "MailTip",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "MailTipTranslations",
+        "type": "MultiValuedProperty",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "MaxReceiveSize",
+        "type": "Unlimited",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "MaxSendSize",
+        "type": "Unlimited",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "MessageCopyForSendOnBehalfEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "MessageCopyForSentAsEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "MessageCopyForSMTPClientSubmissionEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ExcludeFromAllHolds",
+          "ExcludeFromAllOrgHolds",
+          "ExcludeFromOrgHolds",
+          "IsExchangeCloudManaged",
+          "RecalculateInactiveMailbox",
+          "RemoveDelayHoldApplied",
+          "RemoveDelayReleaseHoldApplied",
+          "RemoveDisabledArchive",
+          "RemoveOrphanedHolds"
+        ],
+        "values": []
+      },
+      {
+        "name": "MessageTrackingReadStatusEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "MicrosoftOnlineServicesID",
+        "type": "SmtpAddress",
+        "required": false,
+        "sets": [
+          "ExcludeFromAllHolds",
+          "ExcludeFromAllOrgHolds",
+          "ExcludeFromOrgHolds",
+          "IsExchangeCloudManaged",
+          "RecalculateInactiveMailbox",
+          "RemoveDelayHoldApplied",
+          "RemoveDelayReleaseHoldApplied",
+          "RemoveDisabledArchive",
+          "RemoveOrphanedHolds"
+        ],
+        "values": []
+      },
+      {
+        "name": "ModeratedBy",
+        "type": "MultiValuedProperty",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ModerationEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Name",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "NonCompliantDevices",
+        "type": "MultiValuedProperty",
+        "required": false,
+        "sets": [
+          "ExcludeFromAllHolds",
+          "ExcludeFromAllOrgHolds",
+          "ExcludeFromOrgHolds",
+          "IsExchangeCloudManaged",
+          "RecalculateInactiveMailbox",
+          "RemoveDelayHoldApplied",
+          "RemoveDelayReleaseHoldApplied",
+          "RemoveDisabledArchive",
+          "RemoveOrphanedHolds"
+        ],
+        "values": []
+      },
+      {
+        "name": "Office",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Password",
+        "type": "SecureString",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ProhibitSendQuota",
+        "type": "Unlimited",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ProhibitSendReceiveQuota",
+        "type": "Unlimited",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ProvideConsent",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "ProvideConsent",
+          "RemoveComplianceTagHoldApplied"
+        ],
+        "values": []
+      },
+      {
+        "name": "ProvisionedForOfficeGraph",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "ExcludeFromAllHolds",
+          "ExcludeFromAllOrgHolds",
+          "ExcludeFromOrgHolds",
+          "IsExchangeCloudManaged",
+          "RecalculateInactiveMailbox",
+          "RemoveDelayHoldApplied",
+          "RemoveDelayReleaseHoldApplied",
+          "RemoveDisabledArchive",
+          "RemoveOrphanedHolds"
+        ],
+        "values": []
+      },
+      {
+        "name": "PublicFolder",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "RecalculateInactiveMailbox",
+        "type": "SwitchParameter",
+        "required": true,
+        "sets": [
+          "RecalculateInactiveMailbox"
+        ],
+        "values": []
+      },
+      {
+        "name": "RecipientLimits",
+        "type": "Unlimited",
+        "required": false,
+        "sets": [
+          "Identity"
+        ],
+        "values": []
+      },
+      {
+        "name": "RejectMessagesFrom",
+        "type": "MultiValuedProperty",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "RejectMessagesFromDLMembers",
+        "type": "MultiValuedProperty",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "RejectMessagesFromSendersOrMembers",
+        "type": "MultiValuedProperty",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "RemoveComplianceTagHoldApplied",
+        "type": "SwitchParameter",
+        "required": true,
+        "sets": [
+          "RemoveComplianceTagHoldApplied"
+        ],
+        "values": []
+      },
+      {
+        "name": "RemoveDelayHoldApplied",
+        "type": "SwitchParameter",
+        "required": true,
+        "sets": [
+          "RemoveDelayHoldApplied"
+        ],
+        "values": []
+      },
+      {
+        "name": "RemoveDelayReleaseHoldApplied",
+        "type": "SwitchParameter",
+        "required": true,
+        "sets": [
+          "RemoveDelayReleaseHoldApplied"
+        ],
+        "values": []
+      },
+      {
+        "name": "RemoveDisabledArchive",
+        "type": "SwitchParameter",
+        "required": true,
+        "sets": [
+          "RemoveDisabledArchive"
+        ],
+        "values": []
+      },
+      {
+        "name": "RemoveMailboxProvisioningConstraint",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "ExcludeFromAllHolds",
+          "ExcludeFromAllOrgHolds",
+          "ExcludeFromOrgHolds",
+          "IsExchangeCloudManaged",
+          "RecalculateInactiveMailbox",
+          "RemoveDelayHoldApplied",
+          "RemoveDelayReleaseHoldApplied",
+          "RemoveDisabledArchive",
+          "RemoveOrphanedHolds"
+        ],
+        "values": []
+      },
+      {
+        "name": "RemoveOrphanedHolds",
+        "type": "String[]",
+        "required": false,
+        "sets": [
+          "RemoveOrphanedHolds"
+        ],
+        "values": []
+      },
+      {
+        "name": "RequireSenderAuthenticationEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ResourceCapacity",
+        "type": "Int32",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ResourceCustom",
+        "type": "MultiValuedProperty",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "RetainDeletedItemsFor",
+        "type": "EnhancedTimeSpan",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "RetentionComment",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "RetentionHoldEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "RetentionPolicy",
+        "type": "MailboxPolicyIdParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "RetentionUrl",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "RoleAssignmentPolicy",
+        "type": "MailboxPolicyIdParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "RoomMailboxPassword",
+        "type": "SecureString",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "RulesQuota",
+        "type": "ByteQuantifiedSize",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "SchedulerAssistant",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ExcludeFromAllHolds",
+          "ExcludeFromAllOrgHolds",
+          "ExcludeFromOrgHolds",
+          "IsExchangeCloudManaged",
+          "RecalculateInactiveMailbox",
+          "RemoveDelayHoldApplied",
+          "RemoveDelayReleaseHoldApplied",
+          "RemoveDisabledArchive",
+          "RemoveOrphanedHolds"
+        ],
+        "values": []
+      },
+      {
+        "name": "SendModerationNotifications",
+        "type": "TransportModerationNotificationFlags",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "SharingPolicy",
+        "type": "SharingPolicyIdParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "SimpleDisplayName",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "SingleItemRecoveryEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "StartDateForRetentionHold",
+        "type": "DateTime",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "StsRefreshTokensValidFrom",
+        "type": "DateTime",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Type",
+        "type": "ConvertibleMailboxSubType",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "UniqueRecipientsCountLimitLevel",
+        "type": "UniqueRecipientsCountLimitLevelType",
+        "required": false,
+        "sets": [
+          "ExcludeFromAllHolds",
+          "ExcludeFromAllOrgHolds",
+          "ExcludeFromOrgHolds",
+          "IsExchangeCloudManaged",
+          "RecalculateInactiveMailbox",
+          "RemoveDelayHoldApplied",
+          "RemoveDelayReleaseHoldApplied",
+          "RemoveDisabledArchive",
+          "RemoveOrphanedHolds"
+        ],
+        "values": []
+      },
+      {
+        "name": "UniqueUnrestrictedGroupsLimitEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ExcludeFromAllHolds",
+          "ExcludeFromAllOrgHolds",
+          "ExcludeFromOrgHolds",
+          "IsExchangeCloudManaged",
+          "RecalculateInactiveMailbox",
+          "RemoveDelayHoldApplied",
+          "RemoveDelayReleaseHoldApplied",
+          "RemoveDisabledArchive",
+          "RemoveOrphanedHolds"
+        ],
+        "values": []
+      },
+      {
+        "name": "UpdateEnforcedTimestamp",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "ExcludeFromAllHolds",
+          "ExcludeFromAllOrgHolds",
+          "ExcludeFromOrgHolds",
+          "IsExchangeCloudManaged",
+          "RecalculateInactiveMailbox",
+          "RemoveDelayHoldApplied",
+          "RemoveDelayReleaseHoldApplied",
+          "RemoveDisabledArchive",
+          "RemoveOrphanedHolds"
+        ],
+        "values": []
+      },
+      {
+        "name": "UseDatabaseQuotaDefaults",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "UseDatabaseRetentionDefaults",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "UserCertificate",
+        "type": "MultiValuedProperty",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "UserSMimeCertificate",
+        "type": "MultiValuedProperty",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "WhatIf",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "WindowsEmailAddress",
+        "type": "SmtpAddress",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      }
+    ]
+  },
+  {
+    "name": "Set-MailboxCalendarConfiguration",
+    "title": "Edit calendar appearance & work hours",
+    "category": "Calendar appearance",
+    "unavailable": null,
+    "url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/set-mailboxcalendarconfiguration?view=exchange-ps",
+    "parameters": [
+      {
+        "name": "Identity",
+        "type": "MailboxIdParameter",
+        "required": true,
+        "sets": [
+          "Default",
+          "Identity"
+        ],
+        "values": []
+      },
+      {
+        "name": "AgendaMailEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "AgendaMailIntroductionEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "Identity",
+          "MailboxLocation"
+        ],
+        "values": []
+      },
+      {
+        "name": "AgendaPaneEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "Identity",
+          "MailboxLocation"
+        ],
+        "values": []
+      },
+      {
+        "name": "AutoDeclineWhenBusy",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "Identity",
+          "MailboxLocation"
+        ],
+        "values": []
+      },
+      {
+        "name": "CalendarFeedsPreferredLanguage",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "Identity",
+          "MailboxLocation"
+        ],
+        "values": []
+      },
+      {
+        "name": "CalendarFeedsPreferredRegion",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "Identity",
+          "MailboxLocation"
+        ],
+        "values": []
+      },
+      {
+        "name": "CalendarFeedsRootPageId",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "Identity",
+          "MailboxLocation"
+        ],
+        "values": []
+      },
+      {
+        "name": "Confirm",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ConversationalSchedulingEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "CreateEventsFromEmailAsPrivate",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "Identity",
+          "MailboxLocation"
+        ],
+        "values": []
+      },
+      {
+        "name": "DailyAgendaMailSchedule",
+        "type": "AgendaMailSchedule",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "DefaultMeetingDuration",
+        "type": "Int32",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "DefaultMinutesToReduceLongEventsBy",
+        "type": "Int32",
+        "required": false,
+        "sets": [
+          "Identity",
+          "MailboxLocation"
+        ],
+        "values": []
+      },
+      {
+        "name": "DefaultMinutesToReduceShortEventsBy",
+        "type": "Int32",
+        "required": false,
+        "sets": [
+          "Identity",
+          "MailboxLocation"
+        ],
+        "values": []
+      },
+      {
+        "name": "DefaultOnlineMeetingProvider",
+        "type": "OnlineMeetingProviderType",
+        "required": false,
+        "sets": [
+          "Identity",
+          "MailboxLocation"
+        ],
+        "values": []
+      },
+      {
+        "name": "DefaultReminderTime",
+        "type": "TimeSpan",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "DeleteMeetingRequestOnRespond",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "Identity",
+          "MailboxLocation"
+        ],
+        "values": []
+      },
+      {
+        "name": "DiningEventsFromEmailEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "Identity",
+          "MailboxLocation"
+        ],
+        "values": []
+      },
+      {
+        "name": "EntertainmentEventsFromEmailEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "Identity",
+          "MailboxLocation"
+        ],
+        "values": []
+      },
+      {
+        "name": "EventsFromEmailEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "Identity",
+          "MailboxLocation"
+        ],
+        "values": []
+      },
+      {
+        "name": "FirstWeekOfYear",
+        "type": "FirstWeekRules",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "FlightEventsFromEmailEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "Identity",
+          "MailboxLocation"
+        ],
+        "values": []
+      },
+      {
+        "name": "HotelEventsFromEmailEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "Identity",
+          "MailboxLocation"
+        ],
+        "values": []
+      },
+      {
+        "name": "InvoiceEventsFromEmailEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "Identity",
+          "MailboxLocation"
+        ],
+        "values": []
+      },
+      {
+        "name": "LocationDetailsInFreeBusy",
+        "type": "LocationDetailsPermissionInFreeBusy",
+        "required": false,
+        "sets": [
+          "Identity",
+          "MailboxLocation"
+        ],
+        "values": []
+      },
+      {
+        "name": "MailboxLocation",
+        "type": "MailboxLocationIdParameter",
+        "required": false,
+        "sets": [
+          "MailboxLocation"
+        ],
+        "values": []
+      },
+      {
+        "name": "OnlineMeetingsByDefaultEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "Identity",
+          "MailboxLocation"
+        ],
+        "values": []
+      },
+      {
+        "name": "PackageDeliveryEventsFromEmailEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "Identity",
+          "MailboxLocation"
+        ],
+        "values": []
+      },
+      {
+        "name": "PreserveDeclinedMeetings",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "Identity",
+          "MailboxLocation"
+        ],
+        "values": []
+      },
+      {
+        "name": "RemindersEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ReminderSoundEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "RentalCarEventsFromEmailEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "Identity",
+          "MailboxLocation"
+        ],
+        "values": []
+      },
+      {
+        "name": "ServiceAppointmentEventsFromEmailEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "Identity",
+          "MailboxLocation"
+        ],
+        "values": []
+      },
+      {
+        "name": "ShortenEventScopeDefault",
+        "type": "ShortenEventScopeOption",
+        "required": false,
+        "sets": [
+          "Identity",
+          "MailboxLocation"
+        ],
+        "values": []
+      },
+      {
+        "name": "ShowWeekNumbers",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "SkipAgendaMailOnFreeDays",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "TimeIncrement",
+        "type": "HourIncrement",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "UseBrightCalendarColorThemeInOwa",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "WeatherEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "Identity",
+          "MailboxLocation"
+        ],
+        "values": []
+      },
+      {
+        "name": "WeatherLocationBookmark",
+        "type": "Int32",
+        "required": false,
+        "sets": [
+          "Identity",
+          "MailboxLocation"
+        ],
+        "values": []
+      },
+      {
+        "name": "WeatherLocations",
+        "type": "MultiValuedProperty",
+        "required": false,
+        "sets": [
+          "Identity",
+          "MailboxLocation"
+        ],
+        "values": []
+      },
+      {
+        "name": "WeatherUnit",
+        "type": "WeatherTemperatureUnit",
+        "required": false,
+        "sets": [
+          "Identity",
+          "MailboxLocation"
+        ],
+        "values": []
+      },
+      {
+        "name": "WeekStartDay",
+        "type": "DayOfWeek",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "WhatIf",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "WorkDays",
+        "type": "DaysOfWeek",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "WorkingHoursEndTime",
+        "type": "TimeSpan",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "WorkingHoursStartTime",
+        "type": "TimeSpan",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "WorkingHoursTimeZone",
+        "type": "ExTimeZoneValue",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "WorkspaceUserEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "Identity",
+          "MailboxLocation"
+        ],
+        "values": []
+      }
+    ]
+  },
+  {
+    "name": "Set-MailboxCalendarFolder",
+    "title": "Edit calendar publishing",
+    "category": "Calendar publishing",
+    "unavailable": null,
+    "url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/set-mailboxcalendarfolder?view=exchange-ps",
+    "parameters": [
+      {
+        "name": "Identity",
+        "type": "MailboxFolderIdParameter",
+        "required": true,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Confirm",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "DetailLevel",
+        "type": "DetailLevelEnumType",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "PublishDateRangeFrom",
+        "type": "DateRangeEnumType",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "PublishDateRangeTo",
+        "type": "DateRangeEnumType",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "PublishEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ResetUrl",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "SearchableUrlEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "SetAsSharingSource",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "SharedCalendarSyncStartDate",
+        "type": "DateTime",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "UseHttps",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "WhatIf",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      }
+    ]
+  },
+  {
+    "name": "Set-MailboxFolderPermission",
+    "title": "Edit calendar access & delegates",
+    "category": "Folder permissions",
+    "unavailable": null,
+    "url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/set-mailboxfolderpermission?view=exchange-ps",
+    "parameters": [
+      {
+        "name": "Identity",
+        "type": "MailboxFolderIdParameter",
+        "required": true,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "AccessRights",
+        "type": "MailboxFolderAccessRight[]",
+        "required": true,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "User",
+        "type": "MailboxFolderUserIdParameter",
+        "required": true,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Confirm",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "SendNotificationToUser",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "SharingPermissionFlags",
+        "type": "MailboxFolderPermissionFlags",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "WhatIf",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      }
+    ]
+  },
+  {
+    "name": "Set-MailboxRegionalConfiguration",
+    "title": "Edit time zone & regional settings",
+    "category": "Calendar appearance",
+    "unavailable": null,
+    "url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/set-mailboxregionalconfiguration?view=exchange-ps",
+    "parameters": [
+      {
+        "name": "Identity",
+        "type": "MailboxIdParameter",
+        "required": true,
+        "sets": [
+          "Default",
+          "Identity"
+        ],
+        "values": []
+      },
+      {
+        "name": "Archive",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "Identity"
+        ],
+        "values": []
+      },
+      {
+        "name": "Confirm",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "DateFormat",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Language",
+        "type": "CultureInfo",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "MailboxLocation",
+        "type": "MailboxLocationIdParameter",
+        "required": false,
+        "sets": [
+          "MailboxLocation"
+        ],
+        "values": []
+      },
+      {
+        "name": "LocalizeDefaultFolderName",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "TimeFormat",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "TimeZone",
+        "type": "ExTimeZoneValue",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "UseCustomRouting",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "Identity",
+          "MailboxLocation"
+        ],
+        "values": []
+      },
+      {
+        "name": "WhatIf",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      }
+    ]
+  },
+  {
+    "name": "Set-OrganizationConfig",
+    "title": "Edit organization config",
+    "category": "Sharing & availability",
+    "unavailable": null,
+    "url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/set-organizationconfig?view=exchange-ps",
+    "parameters": [
+      {
+        "name": "ShortenEventScopeDefault",
+        "type": "ShortenEventScopeMode",
+        "required": true,
+        "sets": [
+          "ShortenEventScopeParameter"
+        ],
+        "values": []
+      },
+      {
+        "name": "ActionableMessagesExtenalAccessTokenEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "ActivityBasedAuthenticationTimeoutEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ActivityBasedAuthenticationTimeoutInterval",
+        "type": "EnhancedTimeSpan",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ActivityBasedAuthenticationTimeoutWithSingleSignOnEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "AppsForOfficeEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "AdfsAuthenticationParameter",
+          "AdfsAuthenticationRawConfiguration",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "AsyncSendEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "AdfsAuthenticationParameter",
+          "AdfsAuthenticationRawConfiguration",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "AuditDisabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "AutoArchivingThresholdPercentage",
+        "type": "Int16",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "AutodiscoverPartialDirSync",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "AutoEnableArchiveMailbox",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "AutoExpandingArchive",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "AutomaticForcedReadReceiptEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "BlockMoveMessagesForGroupFolders",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "BookingsAddressEntryRestricted",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "BookingsAuthEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "BookingsBlockedWordsEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "BookingsCreationOfCustomQuestionsRestricted",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "BookingsEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "BookingsExposureOfStaffDetailsRestricted",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "BookingsMembershipApprovalRequired",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "BookingsNamingPolicyEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "BookingsNamingPolicyPrefix",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "BookingsNamingPolicyPrefixEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "BookingsNamingPolicySuffix",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "BookingsNamingPolicySuffixEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "BookingsNotesEntryRestricted",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "BookingsPaymentsEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "BookingsPhoneNumberEntryRestricted",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "BookingsSearchEngineIndexDisabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "BookingsSmsMicrosoftEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "BookingsSocialSharingRestricted",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "ByteEncoderTypeFor7BitCharsets",
+        "type": "Int32",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "CalendarVersionStoreEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "ComplianceMLBgdCrawlEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "Confirm",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ConnectorsActionableMessagesEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "AdfsAuthenticationParameter",
+          "AdfsAuthenticationRawConfiguration",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "ConnectorsEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "AdfsAuthenticationParameter",
+          "AdfsAuthenticationRawConfiguration",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "ConnectorsEnabledForOutlook",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "ConnectorsEnabledForSharepoint",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "ConnectorsEnabledForTeams",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "ConnectorsEnabledForYammer",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "CustomerLockboxEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "DefaultAuthenticationPolicy",
+        "type": "AuthPolicyIdParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "DefaultFolderPermissionRestricted",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "DefaultGroupAccessType",
+        "type": "ModernGroupObjectType",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "DefaultMinutesToReduceLongEventsBy",
+        "type": "Int32",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter"
+        ],
+        "values": []
+      },
+      {
+        "name": "DefaultMinutesToReduceShortEventsBy",
+        "type": "Int32",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter"
+        ],
+        "values": []
+      },
+      {
+        "name": "DefaultPublicFolderAgeLimit",
+        "type": "EnhancedTimeSpan",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "AdfsAuthenticationParameter",
+          "AdfsAuthenticationRawConfiguration",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "DefaultPublicFolderDeletedItemRetention",
+        "type": "EnhancedTimeSpan",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "AdfsAuthenticationParameter",
+          "AdfsAuthenticationRawConfiguration",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "DefaultPublicFolderIssueWarningQuota",
+        "type": "Unlimited",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "AdfsAuthenticationParameter",
+          "AdfsAuthenticationRawConfiguration",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "DefaultPublicFolderMaxItemSize",
+        "type": "Unlimited",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "AdfsAuthenticationParameter",
+          "AdfsAuthenticationRawConfiguration",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "DefaultPublicFolderMovedItemRetention",
+        "type": "EnhancedTimeSpan",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "AdfsAuthenticationParameter",
+          "AdfsAuthenticationRawConfiguration",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "DefaultPublicFolderProhibitPostQuota",
+        "type": "Unlimited",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "AdfsAuthenticationParameter",
+          "AdfsAuthenticationRawConfiguration",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "DelayedDelicensingEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "DirectReportsGroupAutoCreationEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "DisablePlusAddressInRecipients",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "DistributionGroupDefaultOU",
+        "type": "OrganizationalUnitIdParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "DistributionGroupNameBlockedWordsList",
+        "type": "MultiValuedProperty",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "DistributionGroupNamingPolicy",
+        "type": "DistributionGroupNamingPolicy",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "DLPViaDcsEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "DLPWaitOnSendEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "DLPWaitOnSendTimeout",
+        "type": "Int16",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ElcProcessingDisabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "EnableForwardingAddressSyncForMailboxes",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "EnableOutlookEvents",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "EndUserDLUpgradeFlowsDisabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "EndUserMailNotificationForDelayedDelicensingEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "EnforceExoAppRbacPermissions",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "EnforceShortenEventSetting",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter"
+        ],
+        "values": []
+      },
+      {
+        "name": "EwsAllowEntourage",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "EwsAllowList",
+        "type": "MultiValuedProperty",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "EwsAllowMacOutlook",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "EwsAllowOutlook",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "EwsAllowedAppIDs",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "EwsApplicationAccessPolicy",
+        "type": "EwsApplicationAccessPolicy",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "EwsBlockList",
+        "type": "MultiValuedProperty",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "EwsEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ExchangeAttributesCloudManagedByDefault",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ExchangeAttributesServerManagedByDefault",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ExchangeNotificationEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "ExchangeNotificationRecipients",
+        "type": "MultiValuedProperty",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "FindTimeAttendeeAuthenticationEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "FindTimeAutoScheduleDisabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "FindTimeLockPollForAttendeesEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "FindTimeOnlineMeetingOptionDisabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "FocusedInboxOn",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "HierarchicalAddressBookRoot",
+        "type": "UserContactGroupIdParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "HybridRSVPEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "InRegionRoutingEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "DelayedDelicensingParameterSet",
+          "ShortenEventScopeParameter,"
+        ],
+        "values": []
+      },
+      {
+        "name": "IPListBlocked",
+        "type": "MultiValuedProperty",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "IsAgendaMailEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "AdfsAuthenticationParameter",
+          "AdfsAuthenticationRawConfiguration",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "IsGroupFoldersAndRulesEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "IsGroupMemberAllowedToEditContent",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "LeanPopoutEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "AdfsAuthenticationParameter",
+          "AdfsAuthenticationRawConfiguration",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "LinkPreviewEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "AdfsAuthenticationParameter",
+          "AdfsAuthenticationRawConfiguration",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "MailTipsAllTipsEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "MailTipsExternalRecipientsTipsEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "MailTipsGroupMetricsEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "MailTipsLargeAudienceThreshold",
+        "type": "UInt32",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "MailTipsMailboxSourcedTipsEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "MaskClientIpInReceivedHeadersEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "MatchSenderOrganizerProperties",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "MessageHighlightsEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "MessageRecallAlertRecipientsEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter"
+        ],
+        "values": []
+      },
+      {
+        "name": "MessageRecallAlertRecipientsReadMessagesOnlyEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter"
+        ],
+        "values": []
+      },
+      {
+        "name": "MessageRecallEnabled",
+        "type": "System.Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "MessageRecallMaxRecallableAge",
+        "type": "Microsoft.Exchange.Data.EnhancedTimeSpan",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter"
+        ],
+        "values": []
+      },
+      {
+        "name": "MessageRemindersEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "MobileAppEducationEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "OAuth2ClientProfileEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "AdfsAuthenticationParameter",
+          "AdfsAuthenticationRawConfiguration",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "OnlineMeetingsByDefaultEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "OutlookGifPickerDisabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "OutlookMobileGCCRestrictionsEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "OutlookMobileHelpShiftEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "OutlookMobileSingleAccountEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "OutlookPayEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "OutlookTextPredictionDisabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "PerTenantSwitchToESTSEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "PostponeRoamingSignaturesUntilLater",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "PreferredInternetCodePageForShiftJis",
+        "type": "Int32",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "PublicComputersDetectionEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "PublicFoldersEnabled",
+        "type": "PublicFoldersDeployment",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "AdfsAuthenticationParameter",
+          "AdfsAuthenticationRawConfiguration",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "PublicFolderShowClientControl",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "AdfsAuthenticationParameter",
+          "AdfsAuthenticationRawConfiguration",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "ReadTrackingEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "RecallReadMessagesEnabled",
+        "type": "System.Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "RefreshSessionEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "AdfsAuthenticationParameter",
+          "AdfsAuthenticationRawConfiguration",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "RejectDirectSend",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter"
+        ],
+        "values": []
+      },
+      {
+        "name": "RecipientDelimiters",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "RemotePublicFolderMailboxes",
+        "type": "MultiValuedProperty",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "AdfsAuthenticationParameter",
+          "AdfsAuthenticationRawConfiguration",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "RequiredCharsetCoverage",
+        "type": "Int32",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "SendFromAliasEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "SharedDomainEmailAddressFlowEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "SiteMailboxCreationURL",
+        "type": "Uri",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "AdfsAuthenticationParameter",
+          "AdfsAuthenticationRawConfiguration",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "SmtpActionableMessagesEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "AdfsAuthenticationParameter",
+          "AdfsAuthenticationRawConfiguration",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "TenantAdminNotificationForDelayedDelicensingEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "TwoClickMailPreviewEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "UnblockUnsafeSenderPromptEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "AdfsAuthenticationParameter",
+          "AdfsAuthenticationRawConfiguration",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "VisibleMeetingUpdateProperties",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "WebPushNotificationsDisabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "WebSuggestedRepliesDisabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      },
+      {
+        "name": "WhatIf",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "WorkspaceTenantEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "ShortenEventScopeParameter",
+          "DelayedDelicensingParameterSet"
+        ],
+        "values": []
+      }
+    ]
+  },
+  {
+    "name": "Set-OrganizationRelationship",
+    "title": "Edit organization relationship",
+    "category": "Sharing & availability",
+    "unavailable": null,
+    "url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/set-organizationrelationship?view=exchange-ps",
+    "parameters": [
+      {
+        "name": "Identity",
+        "type": "OrganizationRelationshipIdParameter",
+        "required": true,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ArchiveAccessEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Confirm",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "DeliveryReportEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "DomainNames",
+        "type": "MultiValuedProperty",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Enabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Force",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "FreeBusyAccessEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "FreeBusyAccessLevel",
+        "type": "FreeBusyAccessLevel",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "FreeBusyAccessScope",
+        "type": "GroupIdParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "MailboxMoveCapability",
+        "type": "MailboxMoveCapability",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "MailboxMoveEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "MailboxMovePublishedScopes",
+        "type": "MultiValuedProperty",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "MailTipsAccessEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "MailTipsAccessLevel",
+        "type": "MailTipsAccessLevel",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "MailTipsAccessScope",
+        "type": "GroupIdParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Name",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "OAuthApplicationId",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "OrganizationContact",
+        "type": "SmtpAddress",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "PhotosEnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "TargetApplicationUri",
+        "type": "Uri",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "TargetAutodiscoverEpr",
+        "type": "Uri",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "TargetOwaURL",
+        "type": "Uri",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "TargetSharingEpr",
+        "type": "Uri",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "WhatIf",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      }
+    ]
+  },
+  {
+    "name": "Set-Place",
+    "title": "Edit place",
+    "category": "Booking & resources",
+    "unavailable": null,
+    "url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/set-place?view=exchange-ps",
+    "parameters": [
+      {
+        "name": "Identity",
+        "type": "RecipientIdParameter",
+        "required": true,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "AudioDeviceName",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Building",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Capacity",
+        "type": "System.Int32",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "City",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Confirm",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "CountryOrRegion",
+        "type": "CountryInfo",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "DisplayDeviceName",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Floor",
+        "type": "System.Int32",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "FloorLabel",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "GeoCoordinates",
+        "type": "GeoCoordinates",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "IsWheelChairAccessible",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Label",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "MTREnabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ParentId",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Phone",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "PostalCode",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "State",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Street",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Tags",
+        "type": "String[]",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "VideoDeviceName",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "WhatIf",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      }
+    ]
+  },
+  {
+    "name": "Set-ResourceConfig",
+    "title": "Edit resource config",
+    "category": "Booking & resources",
+    "unavailable": null,
+    "url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/set-resourceconfig?view=exchange-ps",
+    "parameters": [
+      {
+        "name": "Confirm",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ResourcePropertySchema",
+        "type": "MultiValuedProperty",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "WhatIf",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      }
+    ]
+  },
+  {
+    "name": "Set-SharingPolicy",
+    "title": "Edit sharing policy",
+    "category": "Sharing & availability",
+    "unavailable": null,
+    "url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/set-sharingpolicy?view=exchange-ps",
+    "parameters": [
+      {
+        "name": "Identity",
+        "type": "SharingPolicyIdParameter",
+        "required": true,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Confirm",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Default",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Domains",
+        "type": "MultiValuedProperty",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Enabled",
+        "type": "Boolean",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Name",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "WhatIf",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      }
+    ]
+  },
+  {
+    "name": "Test-CalendarConnectivity",
+    "title": "Test calendar connectivity",
+    "category": "Directory & folders",
+    "unavailable": "on-premises",
+    "url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/test-calendarconnectivity?view=exchange-ps",
+    "parameters": [
+      {
+        "name": "ClientAccessServer",
+        "type": "ServerIdParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Confirm",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "DomainController",
+        "type": "Fqdn",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "LightMode",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "MailboxServer",
+        "type": "ServerIdParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "MonitoringContext",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "ResetTestAccountCredentials",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "TestType",
+        "type": "OwaConnectivityTestType",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Timeout",
+        "type": "UInt32",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "TrustAnySSLCertificate",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "VirtualDirectoryName",
+        "type": "String",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "WhatIf",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      }
+    ]
+  },
+  {
+    "name": "Test-OrganizationRelationship",
+    "title": "Test organization relationship",
+    "category": "Sharing & availability",
+    "unavailable": null,
+    "url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/test-organizationrelationship?view=exchange-ps",
+    "parameters": [
+      {
+        "name": "Identity",
+        "type": "OrganizationRelationshipIdParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "UserIdentity",
+        "type": "RecipientIdParameter",
+        "required": true,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "Confirm",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      },
+      {
+        "name": "WhatIf",
+        "type": "SwitchParameter",
+        "required": false,
+        "sets": [
+          "(All)"
+        ],
+        "values": []
+      }
+    ]
+  }
+]
