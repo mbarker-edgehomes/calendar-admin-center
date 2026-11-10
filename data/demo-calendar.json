@@ -1,0 +1,62 @@
+{
+  "WorkingHoursStartTime": {
+    "Ticks": 288000000000,
+    "Days": 0,
+    "Hours": 8,
+    "Milliseconds": 0,
+    "Microseconds": 0,
+    "Nanoseconds": 0,
+    "Minutes": 0,
+    "Seconds": 0,
+    "TotalDays": 0.3333333333333333,
+    "TotalHours": 8.0,
+    "TotalMilliseconds": 28800000.0,
+    "TotalMicroseconds": 28800000000.0,
+    "TotalNanoseconds": 28800000000000.0,
+    "TotalMinutes": 480.0,
+    "TotalSeconds": 28800.0
+  },
+  "WorkingHoursEndTime": {
+    "Ticks": 612000000000,
+    "Days": 0,
+    "Hours": 17,
+    "Milliseconds": 0,
+    "Microseconds": 0,
+    "Nanoseconds": 0,
+    "Minutes": 0,
+    "Seconds": 0,
+    "TotalDays": 0.7083333333333334,
+    "TotalHours": 17.0,
+    "TotalMilliseconds": 61200000.0,
+    "TotalMicroseconds": 61200000000.0,
+    "TotalNanoseconds": 61200000000000.0,
+    "TotalMinutes": 1020.0,
+    "TotalSeconds": 61200.0
+  },
+  "WorkDays": "Weekdays",
+  "WorkingHoursTimeZone": "Pacific Standard Time",
+  "DefaultReminderTime": {
+    "Ticks": 9000000000,
+    "Days": 0,
+    "Hours": 0,
+    "Milliseconds": 0,
+    "Microseconds": 0,
+    "Nanoseconds": 0,
+    "Minutes": 15,
+    "Seconds": 0,
+    "TotalDays": 0.010416666666666666,
+    "TotalHours": 0.25,
+    "TotalMilliseconds": 900000.0,
+    "TotalMicroseconds": 900000000.0,
+    "TotalNanoseconds": 900000000000.0,
+    "TotalMinutes": 15.0,
+    "TotalSeconds": 900.0
+  },
+  "RemindersEnabled": true,
+  "WeekStartDay": "Monday",
+  "Language": {
+    "Name": "en-US",
+    "DisplayName": "English (United States)",
+    "LCID": 1033
+  }
+}

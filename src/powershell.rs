@@ -27,6 +27,18 @@ function Schema($name) {
     })
     @{ parameters=$items; default_set=$cmd.DefaultParameterSet }
 }
+function Read-Directory($kind) {
+    $primary=if($kind -eq 'mailboxes'){'Get-EXOMailbox'}else{'Get-EXORecipient'}
+    $fallback=if($kind -eq 'mailboxes'){'Get-Mailbox'}else{'Get-Recipient'}
+    $records=@(); $primaryError=$null
+    try { $records=@(& $primary -ResultSize Unlimited -ErrorAction Stop) } catch { $primaryError=$_.Exception.Message }
+    if ($records.Count -eq 0) {
+        if (Get-Command -Name $fallback -ErrorAction SilentlyContinue) {
+            $records=@(& $fallback -ResultSize Unlimited -ErrorAction Stop)
+        } elseif ($primaryError) { throw $primaryError }
+    }
+    $records | Select-Object @{n='DisplayName';e={[string]$_.DisplayName}},@{n='PrimarySmtpAddress';e={[string]$_.PrimarySmtpAddress}},@{n='RecipientTypeDetails';e={[string]$_.RecipientTypeDetails}},@{n='ExternalDirectoryObjectId';e={[string]$_.ExternalDirectoryObjectId}}
+}
 try {
     $version = $PSVersionTable.PSVersion.ToString()
     $module = Get-Module -ListAvailable ExchangeOnlineManagement | Sort-Object Version -Descending | Select-Object -First 1
@@ -68,9 +80,8 @@ while ($null -ne ($line = [Console]::In.ReadLine())) {
             }
             'directory' {
                 if (!$connected) { throw 'Sign in to Exchange Online first.' }
-                $rows=@(Get-EXOMailbox -ResultSize Unlimited -Properties DisplayName,PrimarySmtpAddress,RecipientTypeDetails,ExternalDirectoryObjectId |
-                    Select-Object @{n='DisplayName';e={[string]$_.DisplayName}},@{n='PrimarySmtpAddress';e={[string]$_.PrimarySmtpAddress}},@{n='RecipientTypeDetails';e={[string]$_.RecipientTypeDetails}},@{n='ExternalDirectoryObjectId';e={[string]$_.ExternalDirectoryObjectId}})
-                Reply $id $true $rows ''
+                $rows=@(Read-Directory 'mailboxes')
+                Reply $id $true @{mailboxes=$rows} ''
             }
             'calendars' {
                 if (!$connected) { throw 'Sign in to Exchange Online first.' }
@@ -80,9 +91,8 @@ while ($null -ne ($line = [Console]::In.ReadLine())) {
             }
             'recipients' {
                 if (!$connected) { throw 'Sign in to Exchange Online first.' }
-                $rows=@(Get-EXORecipient -ResultSize Unlimited -Properties DisplayName,PrimarySmtpAddress,RecipientTypeDetails,ExternalDirectoryObjectId |
-                    Select-Object @{n='DisplayName';e={[string]$_.DisplayName}},@{n='PrimarySmtpAddress';e={[string]$_.PrimarySmtpAddress}},@{n='RecipientTypeDetails';e={[string]$_.RecipientTypeDetails}},@{n='ExternalDirectoryObjectId';e={[string]$_.ExternalDirectoryObjectId}})
-                Reply $id $true $rows ''
+                $rows=@(Read-Directory 'recipients')
+                Reply $id $true @{recipients=$rows} ''
             }
             'schema' {
                 if (!$connected) { throw 'Sign in to Exchange Online first.' }

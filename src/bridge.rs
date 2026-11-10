@@ -206,10 +206,12 @@ mod broker_tests {
 
     const STUB: &str = r#"
 function Import-Module { [CmdletBinding()] param($Name, $MinimumVersion) }
-function Connect-ExchangeOnline { [CmdletBinding()] param($UserPrincipalName, $DelegatedOrganization, $ShowBanner, [switch]$Device, [switch]$DisableWAM) }
+function Connect-ExchangeOnline { [CmdletBinding()] param($UserPrincipalName, $DelegatedOrganization, $ShowBanner, [switch]$Device, [switch]$DisableWAM) $script:emptyPrimary=($UserPrincipalName -eq "fallback@example.test") }
 function Disconnect-ExchangeOnline { [CmdletBinding(SupportsShouldProcess)] param() }
 function Get-ConnectionInformation { [PSCustomObject]@{UserPrincipalName='test@example.com';TenantID='test-tenant';Organization='test.example';State='Connected'} }
-function Get-EXOMailbox { [CmdletBinding()] param($ResultSize,$Properties) [PSCustomObject]@{DisplayName='Test Room';PrimarySmtpAddress='room@example.com';RecipientTypeDetails='RoomMailbox';ExternalDirectoryObjectId='test-id'} }
+function Get-EXOMailbox { [CmdletBinding()] param($ResultSize,$Properties) if($script:emptyPrimary){return};[PSCustomObject]@{DisplayName='Test Room';PrimarySmtpAddress='room@example.com';RecipientTypeDetails='RoomMailbox';ExternalDirectoryObjectId='test-id'} }
+function Get-Mailbox { [CmdletBinding()] param($ResultSize) [PSCustomObject]@{DisplayName="Fallback room";PrimarySmtpAddress="fallback@example.test";RecipientTypeDetails="RoomMailbox";ExternalDirectoryObjectId=$null} }
+function Get-Recipient { [CmdletBinding()] param($ResultSize) Get-Mailbox }
 function Get-EXORecipient { [CmdletBinding()] param($ResultSize,$Properties) Get-EXOMailbox }
 function Get-EXOMailboxFolderStatistics { [CmdletBinding()] param($Identity,$FolderScope) [PSCustomObject]@{Name='Kalender';FolderPath='/Kalender';FolderType='Calendar';ItemsInFolder=2;FolderSize='100 KB'} }
 function Set-CalendarProcessing {
@@ -267,11 +269,17 @@ function Set-CalendarProcessing {
         let id = bridge.send("directory", json!({})).unwrap();
         let directory = reply(&bridge, id);
         assert!(directory.ok, "{}", directory.message);
-        assert_eq!(directory.data[0]["PrimarySmtpAddress"], "room@example.com");
+        assert_eq!(
+            directory.data["mailboxes"][0]["PrimarySmtpAddress"],
+            "room@example.com"
+        );
         let id = bridge.send("recipients", json!({})).unwrap();
         let recipients = reply(&bridge, id);
         assert!(recipients.ok, "{}", recipients.message);
-        assert_eq!(recipients.data[0]["PrimarySmtpAddress"], "room@example.com");
+        assert_eq!(
+            recipients.data["recipients"][0]["PrimarySmtpAddress"],
+            "room@example.com"
+        );
         let id = bridge
             .send("calendars", json!({"mailbox":"room@example.com"}))
             .unwrap();
@@ -307,6 +315,24 @@ function Set-CalendarProcessing {
             .send("invoke", json!({"command":"Remove-Mailbox","arguments":{}}))
             .unwrap();
         assert!(!reply(&bridge, id).ok);
+        let id = bridge
+            .send("connect", json!({"upn":"fallback@example.test"}))
+            .unwrap();
+        assert!(reply(&bridge, id).ok);
+        let id = bridge.send("directory", json!({})).unwrap();
+        let fallback = reply(&bridge, id);
+        assert!(fallback.ok, "{}", fallback.message);
+        assert_eq!(
+            fallback.data["mailboxes"][0]["PrimarySmtpAddress"],
+            "fallback@example.test"
+        );
+        let id = bridge.send("recipients", json!({})).unwrap();
+        let fallback = reply(&bridge, id);
+        assert!(fallback.ok, "{}", fallback.message);
+        assert_eq!(
+            fallback.data["recipients"][0]["PrimarySmtpAddress"],
+            "fallback@example.test"
+        );
         let id = bridge.send("disconnect", json!({})).unwrap();
         assert!(reply(&bridge, id).ok);
     }

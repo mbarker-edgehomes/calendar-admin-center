@@ -88,6 +88,8 @@ pub struct CalendarAdmin {
     runtime: String,
     notices: VecDeque<String>,
     mailboxes: Vec<Mailbox>,
+    directory_loaded: bool,
+    directory_error: Option<String>,
     recipients: Vec<Mailbox>,
     zones: Vec<(String, String)>,
     selected: Option<usize>,
@@ -138,13 +140,6 @@ fn rows(v: &Value) -> Vec<Value> {
     v.as_array()
         .cloned()
         .unwrap_or_else(|| if v.is_null() { vec![] } else { vec![v.clone()] })
-}
-fn collection_text(v: &Value) -> String {
-    if let Some(a) = v.as_array() {
-        a.iter().map(p::value).collect::<Vec<_>>().join("\n")
-    } else {
-        p::value(v)
-    }
 }
 
 impl CalendarAdmin {
@@ -213,6 +208,8 @@ impl CalendarAdmin {
                 .into_iter()
                 .map(|(a, b)| (a.into(), b.into()))
                 .collect(),
+            directory_loaded: demo,
+            directory_error: None,
             recipients: mailboxes.clone(),
             mailboxes,
             selected: None,
@@ -257,18 +254,39 @@ impl CalendarAdmin {
         if !self.connected {
             return "Connect Microsoft 365".into();
         }
+        let profile = &self.profiles[self.profile];
+        if !profile.label.trim().is_empty()
+            && !matches!(
+                profile.label.as_str(),
+                "My organization" | "New organization"
+            )
+        {
+            return profile.label.clone();
+        }
         let v = first(&self.connection["connections"]);
-        for key in ["DelegatedOrganization", "Organization", "TenantID"] {
-            if let Some(s) = v[key].as_str().filter(|s| !s.is_empty()) {
-                return s.to_owned();
-            }
+        if let Some(domain) = v["DelegatedOrganization"]
+            .as_str()
+            .filter(|s| !s.is_empty())
+        {
+            return domain.into();
+        }
+        if let Some(domain) = v["UserPrincipalName"]
+            .as_str()
+            .and_then(|s| s.split_once('@').map(|(_, domain)| domain))
+        {
+            return domain.into();
         }
         "My organization".into()
     }
+
     fn busy(&self) -> bool {
         self.pending.is_some() || !self.queue.is_empty()
     }
     fn enqueue(&mut self, action: &str, payload: Value, label: impl Into<String>) {
+        if action == "directory" {
+            self.directory_loaded = false;
+            self.directory_error = None;
+        }
         self.queue.push_back(Job {
             action: action.into(),
             payload,
@@ -277,6 +295,8 @@ impl CalendarAdmin {
     }
     fn clear(&mut self) {
         self.mailboxes.clear();
+        self.directory_loaded = false;
+        self.directory_error = None;
         self.recipients.clear();
         self.selected = None;
         self.folders.clear();
@@ -364,6 +384,10 @@ impl CalendarAdmin {
             },
         });
         if !r.ok {
+            if job.action == "directory" {
+                self.directory_loaded = true;
+                self.directory_error = Some(r.message.clone());
+            }
             self.details = Some(r.message);
             self.message = Some((
                 false,
@@ -394,10 +418,7 @@ impl CalendarAdmin {
                 self.enqueue("zones", json!({}), "Load time zones");
                 self.enqueue("directory", json!({}), "Load mailboxes");
                 self.enqueue("recipients", json!({}), "Load people and groups");
-                self.message = Some((
-                    true,
-                    "You're connected. Select a mailbox to get started.".into(),
-                ));
+                self.message = Some((true, "You're connected. Loading your mailboxes…".into()));
             }
             "disconnect" => {
                 self.connected = false;
@@ -405,13 +426,36 @@ impl CalendarAdmin {
                 self.message = Some((true, "Disconnected.".into()));
             }
             "directory" => {
-                let previous = self.target();
-                self.mailboxes = serde_json::from_value(r.data).unwrap_or_default();
-                self.mailboxes.sort_by_key(|m| m.name.to_lowercase());
-                if self.recipients.is_empty() {
-                    self.recipients = self.mailboxes.clone();
+                if self
+                    .message
+                    .as_ref()
+                    .is_some_and(|(ok, text)| *ok && text.contains("Loading your mailboxes"))
+                {
+                    self.message = None;
                 }
-                self.selected = self.mailboxes.iter().position(|m| m.email == previous);
+                self.directory_loaded = true;
+                match model::directory_rows(&r.data) {
+                    Ok(mut mailboxes) => {
+                        let previous = self.target();
+                        mailboxes.sort_by_key(|m| m.name.to_lowercase());
+                        self.selected = mailboxes.iter().position(|m| m.email == previous);
+                        self.mailboxes = mailboxes;
+                        self.directory_error = None;
+                        if self.recipients.is_empty() {
+                            self.recipients = self.mailboxes.clone();
+                        }
+                        if let Some(activity) = self.activity.last_mut() {
+                            activity.result = format!("{} mailboxes loaded", self.mailboxes.len());
+                        }
+                    }
+                    Err(error) => {
+                        self.directory_error = Some(error.clone());
+                        self.details = Some(error);
+                        if let Some(activity) = self.activity.last_mut() {
+                            activity.result = "Couldn't read directory".into();
+                        }
+                    }
+                }
             }
             "zones" => {
                 let zones: Vec<_> = rows(&r.data)
@@ -425,7 +469,11 @@ impl CalendarAdmin {
                 }
             }
             "recipients" => {
-                self.recipients = serde_json::from_value(r.data).unwrap_or_default();
+                if let Ok(recipients) = model::directory_rows(&r.data) {
+                    if !recipients.is_empty() {
+                        self.recipients = recipients;
+                    }
+                }
                 self.recipients
                     .retain(|m| !m.kind.contains("DistributionGroup"));
                 self.recipients.sort_by_key(|m| m.name.to_lowercase());
@@ -616,7 +664,13 @@ impl CalendarAdmin {
     }
     fn seed_demo(&mut self) {
         self.cache.insert("Get-EXOMailboxFolderPermission".into(),json!([{"User":"Everyone in your organization","AccessRights":["AvailabilityOnly"],"SharingPermissionFlags":"None"},{"User":"Megan Bowen","AccessRights":["Editor"],"SharingPermissionFlags":"Delegate"}]));
-        self.cache.insert("Get-MailboxCalendarConfiguration".into(),json!([{"WorkingHoursStartTime":"09:00:00","WorkingHoursEndTime":"17:00:00","WorkingHoursTimeZone":"Mountain Standard Time","WorkDays":"Monday, Tuesday, Wednesday, Thursday, Friday","DefaultReminderTime":15,"RemindersEnabled":true,"WeekStartDay":"Monday","ShowWeekNumbers":false}]));
+        self.cache.insert(
+            "Get-MailboxCalendarConfiguration".into(),
+            json!([
+                serde_json::from_str::<Value>(include_str!("../data/demo-calendar.json"))
+                    .expect("bundled calendar sample")
+            ]),
+        );
         self.cache.insert("Get-MailboxRegionalConfiguration".into(),json!([{"TimeZone":"Mountain Standard Time","Language":"en-US","DateFormat":"M/d/yyyy","TimeFormat":"h:mm tt"}]));
         self.cache.insert("Get-CalendarProcessing".into(),json!([{"AutomateProcessing":"AutoAccept","AllowRecurringMeetings":true,"AllowConflicts":false,"BookingWindowInDays":180,"MaximumDurationInMinutes":120,"AllBookInPolicy":true,"ProcessExternalMeetingMessages":false}]));
         self.cache.insert("Get-MailboxCalendarFolder".into(),json!([{"PublishEnabled":false,"DetailLevel":"AvailabilityOnly","SearchableUrlEnabled":false}]));
@@ -665,16 +719,7 @@ impl CalendarAdmin {
             let mut field = Field::default();
             if let Some(value) = baseline.get(&param.name) {
                 if !value.is_null() {
-                    field.text = if param.multiple() {
-                        collection_text(value)
-                    } else {
-                        match value {
-                            Value::Bool(b) => b.to_string(),
-                            Value::Number(n) => n.to_string(),
-                            Value::String(s) => s.clone(),
-                            _ => p::value(value),
-                        }
-                    };
+                    field.text = p::edit_value(&param.name, value).unwrap_or_default();
                 }
             }
             if param.name == "Identity"
@@ -961,6 +1006,37 @@ impl CalendarAdmin {
         }
     }
     fn mailboxes(&mut self, ui: &mut egui::Ui) {
+        if self.mailboxes.is_empty() && self.connected {
+            ui.heading("Mailboxes");
+            muted(ui, format!("Connected to {}", self.tenant()));
+            ui.add_space(25.0);
+            let loading = self
+                .pending
+                .as_ref()
+                .is_some_and(|p| p.job.action == "directory")
+                || self.queue.iter().any(|job| job.action == "directory");
+            card().show(ui,|ui|{
+                ui.set_min_width(ui.available_width());
+                if loading{ui.horizontal(|ui|{ui.spinner();ui.label("Loading your mailboxes…");});muted(ui,"Your sign-in succeeded. The directory is being retrieved.");}
+                else{
+                    if self.directory_error.is_some(){ui.label(RichText::new("We couldn't load your mailboxes").size(20.0).strong());muted(ui,"Your account is still connected. Try loading the directory again.");}
+                    else if self.directory_loaded{ui.label(RichText::new("No mailboxes were returned").size(20.0).strong());muted(ui,"Microsoft 365 returned no mailboxes for this account. You can refresh or check the account in connection details.");}
+                    else{ui.label("Your account is connected. Load the mailbox directory to continue.");}
+                    ui.horizontal(|ui|{if primary(ui,"Load mailboxes").clicked(){self.enqueue("directory",json!({}),"Load mailboxes");}
+if ui.button("Connection details").clicked(){self.connections_open=true;}});
+                    if let Some(error)=&self.directory_error{ui.collapsing("Error details",|ui|{ui.label(error);});}
+                }
+            });
+            return;
+        }
+        if self.mailboxes.is_empty() && self.busy() {
+            ui.heading("Mailboxes");
+            ui.horizontal(|ui| {
+                ui.spinner();
+                ui.label("Connecting to Microsoft 365…");
+            });
+            return;
+        }
         if self.mailboxes.is_empty() {
             ui.heading("Mailboxes");
             ui.label(RichText::new("Manage calendar access, sharing and booking.").color(MUTED));
@@ -1145,21 +1221,18 @@ impl CalendarAdmin {
                     },
                 );
             } else {
-                for key in keys {
-                    if let Some(v) = value.get(key) {
-                        ui.horizontal_wrapped(|ui| {
-                            ui.add_sized(
-                                [205.0, 20.0],
-                                egui::Label::new(RichText::new(p::label(key)).color(MUTED)),
-                            );
-                            ui.label(if v.is_string() {
-                                p::option(v.as_str().unwrap_or_default())
-                            } else {
-                                p::value(v)
-                            });
-                        });
-                    }
-                }
+                egui::Grid::new(ui.id().with(("settings_values", title)))
+                    .num_columns(2)
+                    .spacing(egui::vec2(28.0, 10.0))
+                    .show(ui, |ui| {
+                        for key in keys {
+                            if let Some(value) = value.get(key) {
+                                ui.label(RichText::new(p::label(key)).color(MUTED));
+                                ui.label(p::field_value(key, value));
+                                ui.end_row();
+                            }
+                        }
+                    });
             }
         });
         if edit {
@@ -1619,7 +1692,7 @@ ui.horizontal(|ui|{ui.label(RichText::new(&title).size(22.0).strong());ui.with_l
    if command.name=="Invoke-CalendarEventMigration"{ui.label("Review the affected events before moving them to a new time zone.");}
    if command.name=="Remove-MailboxFolderPermission"{ui.label("This person will lose their current access to the selected calendar.");}
    if !editor.loaded&&self.connected{ui.horizontal(|ui|{ui.spinner();muted(ui,"Loading current settings…");});}
-   let choices=command.sets();if choices.len()>1{let previous=editor.set.clone();egui::ComboBox::from_id_salt("workflow_options").selected_text(p::label(&editor.set)).show_ui(ui,|ui|{for set in &choices{ui.selectable_value(&mut editor.set,set.clone(),p::label(set));}});if previous!=editor.set{editor=self.make_editor(editor.index,Some(editor.set.clone()),editor.baseline.clone());}}
+   if command.name=="Get-MailboxFolder" {let mut recursive=editor.set=="Recurse";if ui.checkbox(&mut recursive,"Include all subfolders").changed(){editor=self.make_editor(editor.index,Some(if recursive{"Recurse"}else{"GetChildren"}.into()),editor.baseline.clone());}}
    if command.parameters.len()>12{ui.add(egui::TextEdit::singleline(&mut editor.search).hint_text("Find a setting").desired_width(f32::INFINITY));}
    let context_identity=!target.is_empty()&&command.category!="Sharing & availability";
    let mut params:Vec<_>=command.parameters.iter().filter(|param|param.in_set(&editor.set)&&!matches!(param.name.as_str(),"Confirm"|"WhatIf"|"PreviewOnly")&&!(param.name=="Identity"&&context_identity)&&calendar_field(&command.name,&param.name)&&!(param.name=="Parent"&&context_identity)&&!((param.name=="GetChildren"||param.name=="Recurse")&&param.required_in(&editor.set))).cloned().collect();
@@ -1636,7 +1709,7 @@ ui.horizontal(|ui|{ui.label(RichText::new(&title).size(22.0).strong());ui.with_l
    });
    ui.separator();
    if self.demo{muted(ui,"Demo · Connect your organization to save changes.");}
-   let ready=self.connected&&editor.loaded&&self.available.contains(&command.name)&&!self.busy();
+   let ready=self.connected&&!self.demo&&editor.loaded&&self.available.contains(&command.name)&&!self.busy();
    ui.horizontal(|ui|{
     let button=if command.name.starts_with("Get-")||command.name.starts_with("Test-"){"Search"}else if command.name.starts_with("Remove-"){"Continue"}else if command.name.starts_with("Add-")||command.name.starts_with("New-"){"Add"}else{"Save changes"};
     if editor.preview&&ui.add_enabled(ready,egui::Button::new("Preview changes")).clicked(){preview=true;}
@@ -1717,7 +1790,9 @@ if ui.button("Go back").clicked(){cancel=true;}});
         let mut open = true;
         let modal=egui::Modal::new(egui::Id::new("tenant_connection")).frame(card()).show(ctx,|ui|{ui.set_width(550.0);ui.horizontal(|ui|{ui.label(RichText::new("Microsoft 365 connection").size(22.0).strong());ui.with_layout(egui::Layout::right_to_left(egui::Align::Center),|ui|{if ui.button("Close").clicked(){open=false;}});});ui.add_space(12.0);
    egui::ScrollArea::vertical().max_height(630.0).show(ui,|ui|{
-    if self.connected{ui.label(RichText::new(self.tenant()).size(20.0).strong());muted(ui,"Connected");if primary(ui,"Disconnect").clicked(){self.enqueue("disconnect",json!({}),"Disconnect");}ui.add_space(10.0);ui.label("Disconnect to switch organizations.");}
+    if self.connected{ui.label(RichText::new(self.tenant()).size(20.0).strong());muted(ui,"Connected");let info=first(&self.connection["connections"]);if let Some(account)=info["UserPrincipalName"].as_str(){ui.label(format!("Signed in as {account}"));}
+if let Some(customer)=info["DelegatedOrganization"].as_str().filter(|s|!s.is_empty()){ui.label(format!("Customer: {customer}"));}
+if primary(ui,"Disconnect").clicked(){self.enqueue("disconnect",json!({}),"Disconnect");}ui.add_space(10.0);ui.label("Disconnect to switch organizations.");}
     else{
      ui.label(RichText::new("Choose your organization").size(20.0).strong());ui.add_space(10.0);
      ui.add_enabled_ui(!self.busy(),|ui|{
@@ -2037,9 +2112,10 @@ fn render_field(
     ui.push_id(key,|ui|{
   ui.add_space(7.0);ui.label(RichText::new(p::label(key)).strong());
   let description=p::description(key);if !description.is_empty(){muted(ui,description);}
+  if let Some(value)=editor.baseline.get(key).filter(|v|!v.is_null()) {if p::edit_value(key,value).is_none(){muted(ui,"This setting couldn't be read. Refresh before changing it.");return;}}
   let field=editor.fields.entry(key.clone()).or_default();
   if key=="User"||is_recipient(param){
-   recipient_picker(ui,key,field,editor.recipient_query.entry(key.clone()).or_default(),recipients,param.multiple(),key=="User");
+   recipient_picker(ui,key,field,editor.recipient_query.entry(key.clone()).or_default(),recipients,param.multiple());
   }else if key=="AccessRights"{
    let current=field.text.lines().next().unwrap_or("Reviewer").to_owned();let mut value=current.clone();
    egui::ComboBox::from_id_salt("access_level").width(365.0).selected_text(p::option(&current)).show_ui(ui,|ui|{for option in ["AvailabilityOnly","LimitedDetails","Reviewer","Editor","Owner","Contributor","Author","NonEditingAuthor","PublishingAuthor","PublishingEditor","None"]{ui.selectable_value(&mut value,option.into(),p::option(option));}});
@@ -2047,10 +2123,12 @@ fn render_field(
   }else if key=="SharingPermissionFlags"{
    let mut delegate=field.text.contains("Delegate");let mut private=field.text.contains("CanViewPrivateItems");let a=ui.checkbox(&mut delegate,"Let this person receive and respond to meeting requests").changed();let b=ui.add_enabled(delegate,egui::Checkbox::new(&mut private,"Let this person see private events")).changed();
    if a||b{field.text=if delegate{if private{"Delegate, CanViewPrivateItems"}else{"Delegate"}}else{"None"}.into();field.enabled=true;field.clear=false;}
+  }else if p::is_clock_field(key){
+   clock_picker(ui,key,field);
   }else if key=="WorkDays"{
-   let previous=field.text.clone();let mut days:Vec<String>=previous.split(',').map(|s|s.trim().to_owned()).collect();
+   let previous=field.text.clone();let mut days:Vec<String>=p::working_days(&Value::String(previous.clone())).unwrap_or_default().into_iter().map(str::to_owned).collect();
    ui.horizontal_wrapped(|ui|{for day in ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]{let mut selected=days.iter().any(|d|d==day);if ui.checkbox(&mut selected,&day[..3]).changed(){days.retain(|d|d!=day);if selected{days.push(day.into());}}}});
-   let next=days.into_iter().filter(|s|!s.is_empty()).collect::<Vec<_>>().join(", ");if next!=previous{field.text=next;field.enabled=true;field.clear=false;}
+   let next=if days.is_empty(){"None".into()}else{days.join(", ")};if next!=previous{field.text=next;field.enabled=true;field.clear=false;}
   }else if key.contains("TimeZone")||key.contains("WindowsTimeZoneId"){
    let previous=field.text.clone();let title=zones.iter().find(|(value,_)|*value==previous).map(|(_,label)|label.to_owned()).unwrap_or_else(||if previous.is_empty(){"Choose a time zone".into()}else{previous.clone()});
    egui::ComboBox::from_id_salt("time_zone").width(365.0).selected_text(title).show_ui(ui,|ui|{let query=editor.list_inputs.entry(key.clone()).or_default();ui.add(egui::TextEdit::singleline(query).hint_text("Search time zones"));let query=query.to_lowercase();for(value,label)in zones{if query.is_empty()||label.to_lowercase().contains(&query)||value.to_lowercase().contains(&query){ui.selectable_value(&mut field.text,value.clone(),label);}}});
@@ -2171,6 +2249,110 @@ fn normalize_access(editor: &mut Editor) {
         }
     }
 }
+fn clock_picker(ui: &mut egui::Ui, key: &str, field: &mut Field) {
+    use chrono::Timelike;
+    let Some(time) = p::clock(&Value::String(field.text.clone())) else {
+        if ui.button("Choose a time").clicked() {
+            field.text = if key == "WorkingHoursEndTime" {
+                "17:00:00"
+            } else {
+                "09:00:00"
+            }
+            .into();
+            field.enabled = true;
+            field.clear = false;
+        }
+        return;
+    };
+    let mut hour = match time.hour() % 12 {
+        0 => 12,
+        h => h,
+    };
+    let mut minute = time.minute();
+    let mut afternoon = time.hour() >= 12;
+    let before = (hour, minute, afternoon);
+    ui.horizontal(|ui| {
+        egui::ComboBox::from_id_salt("hour")
+            .width(60.0)
+            .selected_text(hour.to_string())
+            .show_ui(ui, |ui| {
+                for h in 1..=12 {
+                    ui.selectable_value(&mut hour, h, h.to_string());
+                }
+            });
+        ui.label(":");
+        egui::ComboBox::from_id_salt("minute")
+            .width(60.0)
+            .selected_text(format!("{minute:02}"))
+            .show_ui(ui, |ui| {
+                for m in 0..60 {
+                    ui.selectable_value(&mut minute, m, format!("{m:02}"));
+                }
+            });
+        egui::ComboBox::from_id_salt("period")
+            .width(65.0)
+            .selected_text(if afternoon { "PM" } else { "AM" })
+            .show_ui(ui, |ui| {
+                ui.selectable_value(&mut afternoon, false, "AM");
+                ui.selectable_value(&mut afternoon, true, "PM");
+            });
+    });
+    if before != (hour, minute, afternoon) {
+        let hour = hour % 12 + if afternoon { 12 } else { 0 };
+        field.text = format!("{hour:02}:{minute:02}:00");
+        field.enabled = true;
+        field.clear = false;
+    }
+}
+
+fn recipient_row(ui: &mut egui::Ui, recipient: &Mailbox, highlighted: bool) -> egui::Response {
+    let (rect, response) =
+        ui.allocate_exact_size(egui::vec2(ui.available_width(), 44.0), egui::Sense::click());
+    if highlighted || response.hovered() {
+        ui.painter().rect_filled(rect, 4, TINT);
+    }
+    ui.scope_builder(
+        egui::UiBuilder::new()
+            .max_rect(rect.shrink2(egui::vec2(10.0, 4.0)))
+            .layout(egui::Layout::top_down(egui::Align::Min)),
+        |ui| {
+            ui.spacing_mut().item_spacing.y = 2.0;
+            ui.add(egui::Label::new(RichText::new(&recipient.name).strong().size(14.0)).truncate());
+            ui.add(
+                egui::Label::new(RichText::new(&recipient.email).color(MUTED).size(12.0))
+                    .truncate(),
+            );
+        },
+    );
+    response.widget_info(|| {
+        egui::WidgetInfo::labeled(
+            egui::WidgetType::Button,
+            true,
+            format!("{} ({})", recipient.name, recipient.email),
+        )
+    });
+    response.on_hover_cursor(egui::CursorIcon::PointingHand)
+}
+
+fn recipient_matches<'a>(
+    recipients: &'a [Mailbox],
+    query: &str,
+    selected: &[String],
+) -> Vec<&'a Mailbox> {
+    let query = query.trim().to_lowercase();
+    recipients
+        .iter()
+        .filter(|m| {
+            !m.email.is_empty()
+                && !selected.contains(&m.email)
+                && (query.is_empty()
+                    || m.name.to_lowercase().contains(&query)
+                    || m.email.to_lowercase().contains(&query))
+        })
+        .take(if query.is_empty() { 6 } else { 12 })
+        .collect()
+}
+
 fn recipient_picker(
     ui: &mut egui::Ui,
     key: &str,
@@ -2178,7 +2360,6 @@ fn recipient_picker(
     query: &mut String,
     recipients: &[Mailbox],
     multiple: bool,
-    special: bool,
 ) {
     let selected: Vec<String> = field
         .text
@@ -2186,6 +2367,10 @@ fn recipient_picker(
         .filter(|s| !s.trim().is_empty())
         .map(str::to_owned)
         .collect();
+    if !multiple && matches!(field.text.as_str(), "Default" | "Anonymous") {
+        ui.label(p::option(&field.text));
+        return;
+    }
     let mut remove = None;
     for (i, value) in selected.iter().enumerate() {
         ui.horizontal_wrapped(|ui| {
@@ -2219,70 +2404,69 @@ fn recipient_picker(
     if !multiple && !field.text.is_empty() {
         return;
     }
+    let popup_id = ui.make_persistent_id(("directory_picker", key));
+    let cursor_id = popup_id.with("cursor");
+    let was_open = ui.memory(|memory| memory.is_popup_open(popup_id));
+    let down =
+        was_open && ui.input_mut(|i| i.consume_key(egui::Modifiers::NONE, egui::Key::ArrowDown));
+    let up = was_open && ui.input_mut(|i| i.consume_key(egui::Modifiers::NONE, egui::Key::ArrowUp));
+    let enter =
+        was_open && ui.input_mut(|i| i.consume_key(egui::Modifiers::NONE, egui::Key::Enter));
     let response = ui.add(
         egui::TextEdit::singleline(query)
             .hint_text("Search people or groups…")
-            .desired_width(f32::INFINITY),
+            .desired_width(ui.available_width().min(420.0)),
     );
-    let popup_id = ui.make_persistent_id(("directory_picker", key));
     if response.clicked() || response.changed() {
         ui.memory_mut(|m| m.open_popup(popup_id));
     }
-    let mut chosen = None;
+    let matches = recipient_matches(recipients, query, &selected);
+    let mut cursor = ui
+        .data(|d| d.get_temp::<usize>(cursor_id))
+        .unwrap_or(0)
+        .min(matches.len().saturating_sub(1));
+    if response.changed() {
+        cursor = 0;
+    } else if down {
+        cursor = (cursor + 1).min(matches.len().saturating_sub(1));
+    } else if up {
+        cursor = cursor.saturating_sub(1);
+    }
+    let mut chosen = if enter {
+        matches.get(cursor).map(|m| m.email.clone())
+    } else {
+        None
+    };
     egui::popup_below_widget(
         ui,
         popup_id,
         &response,
         egui::PopupCloseBehavior::CloseOnClickOutside,
         |ui| {
-            ui.set_min_width(response.rect.width());
-            let filter = query.trim().to_lowercase();
-            let mut found = 0;
+            ui.spacing_mut().item_spacing.y = 2.0;
             egui::ScrollArea::vertical()
-                .max_height(280.0)
+                .max_height(224.0)
+                .auto_shrink([false, true])
                 .show(ui, |ui| {
-                    if special {
-                        for (value, label) in [
-                            ("Default", "Everyone in your organization"),
-                            ("Anonymous", "People outside your organization"),
-                        ] {
-                            if filter.is_empty() || label.to_lowercase().contains(&filter) {
-                                if ui.selectable_label(false, label).clicked() {
-                                    chosen = Some(value.to_owned());
-                                }
-                                found += 1;
-                            }
-                        }
-                    }
-                    for recipient in recipients
-                        .iter()
-                        .filter(|m| {
-                            !m.email.is_empty()
-                                && (filter.is_empty()
-                                    || m.name.to_lowercase().contains(&filter)
-                                    || m.email.to_lowercase().contains(&filter))
-                        })
-                        .filter(|m| !selected.contains(&m.email))
-                        .take(10)
-                    {
-                        let label = format!("{}\n{}", recipient.name, recipient.email);
-                        if ui
-                            .add_sized(
-                                [response.rect.width(), 49.0],
-                                egui::Button::new(label).fill(Color32::TRANSPARENT),
-                            )
-                            .clicked()
-                        {
+                    for (i, recipient) in matches.iter().enumerate() {
+                        let row = recipient_row(ui, recipient, i == cursor);
+                        if row.clicked() {
                             chosen = Some(recipient.email.clone());
                         }
-                        found += 1;
+                        if row.hovered() {
+                            cursor = i;
+                        }
+                        if (down || up) && i == cursor {
+                            row.scroll_to_me(Some(egui::Align::Center));
+                        }
                     }
-                    if found == 0 {
+                    if matches.is_empty() {
                         muted(ui, "No matching people or groups.");
                     }
                 });
         },
     );
+    ui.data_mut(|d| d.insert_temp(cursor_id, cursor));
     if let Some(value) = chosen {
         let mut values = if multiple { selected } else { vec![] };
         values.push(value);
@@ -2291,8 +2475,10 @@ fn recipient_picker(
         field.clear = false;
         query.clear();
         ui.memory_mut(|m| m.close_popup());
+        response.surrender_focus();
     }
 }
+
 fn time_zones() -> Vec<(&'static str, &'static str)> {
     vec![
         ("UTC", "Coordinated Universal Time"),
@@ -2615,5 +2801,363 @@ mod tests {
                 "Technical detail leaked into UI: {technical}"
             );
         }
+    }
+    fn rendered(app: &mut CalendarAdmin, ctx: &egui::Context, edit: bool) -> String {
+        let mut content = String::new();
+        for _ in 0..3 {
+            let output = ctx.run(
+                egui::RawInput {
+                    screen_rect: Some(egui::Rect::from_min_size(
+                        egui::Pos2::ZERO,
+                        egui::vec2(1440.0, 940.0),
+                    )),
+                    ..Default::default()
+                },
+                |ctx| {
+                    if edit {
+                        app.editor_window(ctx);
+                    } else {
+                        egui::CentralPanel::default().show(ctx, |ui| {
+                            app.settings_card(
+                                ui,
+                                "Working hours",
+                                "Get-MailboxCalendarConfiguration",
+                                "Set-MailboxCalendarConfiguration",
+                                &[
+                                    "WorkDays",
+                                    "WorkingHoursStartTime",
+                                    "WorkingHoursEndTime",
+                                    "WorkingHoursTimeZone",
+                                ],
+                            );
+                        });
+                    }
+                },
+            );
+            for shape in output.shapes {
+                text(&shape.shape, &mut content);
+            }
+        }
+        content
+    }
+    #[test]
+    fn settings_and_editor_handle_real_exchange_time_objects_without_dirtying_them() {
+        let ctx = egui::Context::default();
+        let mut app = CalendarAdmin::with_context(&ctx, true);
+        app.select_mailbox(0);
+        let view = rendered(&mut app, &ctx, false);
+        for expected in [
+            "8:00 AM",
+            "5:00 PM",
+            "Monday–Friday",
+            "Pacific Time (US & Canada)",
+        ] {
+            assert!(view.contains(expected), "Missing {expected}");
+        }
+        for detail in [
+            "Ticks",
+            "Nanoseconds",
+            "Total hours",
+            "Milliseconds",
+            "Days: 0",
+        ] {
+            assert!(!view.contains(detail));
+        }
+        app.open_editor("Set-MailboxCalendarConfiguration", None);
+        assert_eq!(
+            app.editor.as_ref().unwrap().fields["WorkingHoursStartTime"].text,
+            "08:00:00"
+        );
+        assert_eq!(
+            app.editor.as_ref().unwrap().fields["WorkingHoursEndTime"].text,
+            "17:00:00"
+        );
+        assert_eq!(
+            app.editor.as_ref().unwrap().fields["DefaultReminderTime"].text,
+            "15"
+        );
+        let edit = rendered(&mut app, &ctx, true);
+        for detail in [
+            "Ticks",
+            "Nanoseconds",
+            "Total hours",
+            "Milliseconds",
+            "Days: 0",
+        ] {
+            assert!(!edit.contains(detail));
+        }
+        let editor = app.editor.as_ref().unwrap();
+        let args =
+            catalog::collect(&app.catalog[editor.index], &editor.set, &editor.fields).unwrap();
+        assert_eq!(
+            args.len(),
+            1,
+            "Opening the editor must not submit unchanged working hours"
+        );
+    }
+    #[test]
+    fn live_parameter_sets_do_not_add_a_name_dropdown_to_the_access_dialog() {
+        let ctx = egui::Context::default();
+        let mut app = CalendarAdmin::with_context(&ctx, true);
+        app.select_mailbox(0);
+        let index = app
+            .catalog
+            .iter()
+            .position(|c| c.name == "Add-MailboxFolderPermission")
+            .unwrap();
+        app.catalog[index]
+            .parameters
+            .iter_mut()
+            .find(|p| p.name == "Identity")
+            .unwrap()
+            .sets = vec!["Identity".into(), "Instance".into()];
+        app.open_editor("Add-MailboxFolderPermission", None);
+        let content = rendered(&mut app, &ctx, true);
+        assert!(content.contains("Person or group"));
+        for internal in ["Name", "Instance", "Identity", "Parameter set"] {
+            assert!(
+                !content.lines().any(|line| line == internal),
+                "Exposed an internal command option: {internal}"
+            );
+        }
+    }
+    #[test]
+    fn directory_rows_are_compact_and_left_aligned() {
+        let ctx = egui::Context::default();
+        let person = Mailbox {
+            name: "Example Person".into(),
+            email: "example.person@company.example".into(),
+            ..Default::default()
+        };
+        let mut row_rect = egui::Rect::NOTHING;
+        let output = ctx.run(
+            egui::RawInput {
+                screen_rect: Some(egui::Rect::from_min_size(
+                    egui::Pos2::ZERO,
+                    egui::vec2(600.0, 400.0),
+                )),
+                ..Default::default()
+            },
+            |ctx| {
+                egui::CentralPanel::default().show(ctx, |ui| {
+                    ui.set_width(420.0);
+                    row_rect = recipient_row(ui, &person, false).rect;
+                });
+            },
+        );
+        assert_eq!(row_rect.height(), 44.0);
+        let mut positions = vec![];
+        for shape in output.shapes {
+            if let egui::Shape::Text(shape) = shape.shape {
+                if shape.galley.job.text == person.name || shape.galley.job.text == person.email {
+                    positions.push(shape.pos.x);
+                }
+            }
+        }
+        assert_eq!(positions.len(), 2);
+        for x in positions {
+            assert!(
+                (x - row_rect.left() - 10.0).abs() < 1.0,
+                "Directory text drifted away from the left edge"
+            );
+        }
+    }
+    #[test]
+    fn directory_search_supports_filtering_and_keyboard_selection_without_special_access_entries() {
+        let ctx = egui::Context::default();
+        let people = vec![
+            Mailbox {
+                name: "Ada Example".into(),
+                email: "ada@company.example".into(),
+                ..Default::default()
+            },
+            Mailbox {
+                name: "Adam Example".into(),
+                email: "adam@company.example".into(),
+                ..Default::default()
+            },
+            Mailbox {
+                name: "Other Person".into(),
+                email: "other@company.example".into(),
+                ..Default::default()
+            },
+        ];
+        let mut query = "ad".to_owned();
+        let mut field = Field::default();
+        let mut content = String::new();
+        for frame in 0..4 {
+            let key = match frame {
+                2 => Some(egui::Key::ArrowDown),
+                3 => Some(egui::Key::Enter),
+                _ => None,
+            };
+            let events = key
+                .map(|key| {
+                    vec![egui::Event::Key {
+                        key,
+                        physical_key: None,
+                        pressed: true,
+                        repeat: false,
+                        modifiers: egui::Modifiers::NONE,
+                    }]
+                })
+                .unwrap_or_default();
+            let output = ctx.run(
+                egui::RawInput {
+                    screen_rect: Some(egui::Rect::from_min_size(
+                        egui::Pos2::ZERO,
+                        egui::vec2(1000.0, 700.0),
+                    )),
+                    events,
+                    ..Default::default()
+                },
+                |ctx| {
+                    egui::CentralPanel::default().show(ctx, |ui| {
+                        if frame == 0 {
+                            let id = ui.make_persistent_id(("directory_picker", "User"));
+                            ui.memory_mut(|memory| memory.open_popup(id));
+                        }
+                        recipient_picker(ui, "User", &mut field, &mut query, &people, false);
+                    });
+                },
+            );
+            for shape in output.shapes {
+                text(&shape.shape, &mut content);
+            }
+        }
+        assert_eq!(field.text, "adam@company.example");
+        assert!(field.enabled);
+        assert!(query.is_empty());
+        assert!(content.contains("Ada Example"));
+        assert!(content.contains("Adam Example"));
+        assert!(!content.contains("Other Person"));
+        assert!(!content.contains("Everyone in your organization"));
+        assert!(!content.contains("People outside your organization"));
+        assert_eq!(
+            recipient_matches(&people, "ADAM@COMPANY", &[])[0].name,
+            "Adam Example"
+        );
+    }
+    #[test]
+    fn working_hours_values_stay_in_a_single_aligned_column() {
+        let ctx = egui::Context::default();
+        let mut app = CalendarAdmin::with_context(&ctx, true);
+        app.select_mailbox(0);
+        let mut positions = vec![];
+        for _ in 0..3 {
+            let output = ctx.run(
+                egui::RawInput {
+                    screen_rect: Some(egui::Rect::from_min_size(
+                        egui::Pos2::ZERO,
+                        egui::vec2(1440.0, 940.0),
+                    )),
+                    ..Default::default()
+                },
+                |ctx| {
+                    egui::CentralPanel::default().show(ctx, |ui| {
+                        app.settings_card(
+                            ui,
+                            "Working hours",
+                            "Get-MailboxCalendarConfiguration",
+                            "Set-MailboxCalendarConfiguration",
+                            &[
+                                "WorkDays",
+                                "WorkingHoursStartTime",
+                                "WorkingHoursEndTime",
+                                "WorkingHoursTimeZone",
+                            ],
+                        );
+                    });
+                },
+            );
+            positions.clear();
+            for shape in output.shapes {
+                if let egui::Shape::Text(shape) = shape.shape {
+                    if [
+                        "Monday–Friday",
+                        "8:00 AM",
+                        "5:00 PM",
+                        "Pacific Time (US & Canada)",
+                    ]
+                    .contains(&shape.galley.job.text.as_str())
+                    {
+                        positions.push(shape.pos.x);
+                    }
+                }
+            }
+        }
+        assert_eq!(positions.len(), 4);
+        for x in &positions {
+            assert!(
+                (x - positions[0]).abs() < 1.0,
+                "Settings values lost their shared alignment"
+            );
+        }
+    }
+    #[test]
+    fn connected_empty_loading_and_failed_directories_never_show_the_sign_in_welcome() {
+        let ctx = egui::Context::default();
+        let mut app = CalendarAdmin::with_context(&ctx, false);
+        app.connected = true;
+        for (state, expected) in [
+            (0, "Loading your mailboxes"),
+            (1, "No mailboxes were returned"),
+            (2, "We couldn't load your mailboxes"),
+        ] {
+            app.queue.clear();
+            app.directory_loaded = state != 0;
+            app.directory_error = (state == 2).then_some("Test failure".into());
+            if state == 0 {
+                app.enqueue("directory", json!({}), "Load mailboxes");
+            }
+            let mut content = String::new();
+            for _ in 0..2 {
+                let output = ctx.run(
+                    egui::RawInput {
+                        screen_rect: Some(egui::Rect::from_min_size(
+                            egui::Pos2::ZERO,
+                            egui::vec2(1440.0, 940.0),
+                        )),
+                        ..Default::default()
+                    },
+                    |ctx| {
+                        egui::CentralPanel::default().show(ctx, |ui| app.mailboxes(ui));
+                    },
+                );
+                for shape in output.shapes {
+                    text(&shape.shape, &mut content);
+                }
+            }
+            assert!(content.contains(expected));
+            assert!(!content.contains("Explore the demo"));
+            assert!(!content.contains("Connect Microsoft 365"));
+        }
+    }
+    #[test]
+    fn mailbox_parse_failures_are_visible_and_do_not_disconnect_the_user() {
+        let mut app = app();
+        app.demo = false;
+        app.connected = true;
+        app.mailboxes.clear();
+        app.pending = Some(Pending {
+            id: 1,
+            job: Job {
+                action: "directory".into(),
+                payload: json!({}),
+                label: "Load mailboxes".into(),
+            },
+        });
+        app.response(Response {
+            id: 1,
+            ok: true,
+            data: json!({"unexpected":true}),
+            message: String::new(),
+        });
+        assert!(app.connected);
+        assert!(app.directory_error.is_some());
+        assert!(app.directory_loaded);
+        app.enqueue("directory", json!({}), "Load mailboxes");
+        assert!(app.directory_error.is_none());
+        assert!(!app.directory_loaded);
     }
 }
